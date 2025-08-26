@@ -103,3 +103,68 @@ footer {
     color: #666;
     font-size: 0.9rem;
 }
+
+.tags {
+    margin-top: 0.5rem;
+}
+
+.tag {
+    display: inline-block;
+    background-color: #f0f0f0;
+    color: var(--text-color);
+    padding: 0.25rem 0.5rem;
+    border-radius: 3px;
+    text-decoration: none;
+    font-size: 0.85rem;
+    margin-right: 0.5rem;
+}
+
+.tag:hover {
+    background-color: #e0e0e0;
+    text-decoration: none;
+}
+
+.same-month-posts {
+    margin-top: 3rem;
+    padding: 1.5rem;
+    background-color: #f8f8f8;
+    border-radius: 8px;
+}
+
+.same-month-posts h3 {
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+    color: var(--primary-color);
+}
+
+.same-month-posts ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.same-month-posts li {
+    margin-bottom: 0.5rem;
+}
+
+.same-month-posts a {
+    color: var(--link-color);
+    text-decoration: none;
+}
+
+.same-month-posts a:hover {
+    text-decoration: underline;
+}
+
+article header {
+    margin-bottom: 2rem;
+}
+
+article header h1 {
+    margin-bottom: 0.5rem;
+}
+
+article header time {
+    display: block;
+    margin-bottom: 0.5rem;
+}

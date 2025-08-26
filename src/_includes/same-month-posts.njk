@@ -1,0 +1,20 @@
+{%- set currentPost = post or page -%}
+{%- set currentYear = currentPost.date.getFullYear() -%}
+{%- set currentMonth = currentPost.date.getMonth() -%}
+
+<div class="same-month-posts">
+  <h3>{{ currentYear }}年{{ (currentMonth + 1).toString().padStart(2, '0') }}月の記事</h3>
+  <ul>
+  {%- for post in collections.posts -%}
+    {%- if post.date.getFullYear() == currentYear and post.date.getMonth() == currentMonth -%}
+      <li>
+        {%- if post.url == currentPost.url -%}
+          <strong>{{ post.date | date("%d日") }} - {{ post.data.title }}</strong> (この記事)
+        {%- else -%}
+          <a href="{{ post.url }}">{{ post.date | date("%d日") }} - {{ post.data.title }}</a>
+        {%- endif -%}
+      </li>
+    {%- endif -%}
+  {%- endfor -%}
+  </ul>
+</div>

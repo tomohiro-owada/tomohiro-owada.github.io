@@ -1,0 +1,11 @@
+---
+layout: base.njk
+title: Tags
+---
+
+<h2>すべてのタグ</h2>
+<ul>
+{%- for tag in collections.tagList -%}
+  <li><a href="/tags/{{ tag | slug }}/">{{ tag }}</a> ({{ collections[tag].length }})</li>
+{%- endfor -%}
+</ul>

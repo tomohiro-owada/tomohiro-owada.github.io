@@ -1,6 +1,18 @@
 module.exports = function(eleventyConfig) {
   eleventyConfig.addPassthroughCopy("css");
   eleventyConfig.addPassthroughCopy("CNAME");
+  eleventyConfig.addPassthroughCopy("images");
+  
+  // Add date filter
+  eleventyConfig.addFilter("date", (date, format) => {
+    const d = new Date(date);
+    if (format === "%Y-%m-%d") {
+      return d.toISOString().split('T')[0];
+    } else if (format === "%Y年%m月%d日") {
+      return `${d.getFullYear()}年${(d.getMonth() + 1).toString().padStart(2, '0')}月${d.getDate().toString().padStart(2, '0')}日`;
+    }
+    return d.toLocaleDateString();
+  });
   
   return {
     dir: {

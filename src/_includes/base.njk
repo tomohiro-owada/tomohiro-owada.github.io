@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title or "Blog" }}</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <header>
+        <h1><a href="/">My Blog</a></h1>
+    </header>
+    <main>
+        {{ content | safe }}
+    </main>
+    <footer>
+        <p>&copy; {{ page.date.getFullYear() if page.date else "2025" }} All rights reserved.</p>
+    </footer>
+</body>
+</html>

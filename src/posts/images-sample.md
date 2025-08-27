@@ -1,6 +1,7 @@
 ---
 title: 画像表示のサンプル
 date: 2025-01-27
+description: Markdownで画像を表示する様々な方法を紹介します。基本的な画像表示から、サイズ調整、配置、ギャラリー表示まで。
 tags:
   - sample
   - images

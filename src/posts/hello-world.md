@@ -1,6 +1,7 @@
 ---
 title: Hello World
 date: 2025-01-26
+description: 最初のブログ投稿です。Eleventyを使用してMarkdownから静的サイトを生成する方法を紹介します。
 tags: 
   - first-post
   - introduction

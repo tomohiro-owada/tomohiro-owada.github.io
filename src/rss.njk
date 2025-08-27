@@ -1,0 +1,24 @@
+---
+permalink: /rss.xml
+eleventyExcludeFromCollections: true
+---
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Tomo's Diary</title>
+    <description>技術や日常について綴るブログ</description>
+    <link>https://abalol.xyz/</link>
+    <atom:link href="https://abalol.xyz/rss.xml" rel="self" type="application/rss+xml"/>
+    <lastBuildDate>{{ collections.posts | reverse | first | getDate | rssDate }}</lastBuildDate>
+    <language>ja</language>
+    {%- for post in collections.posts | reverse | limit(20) -%}
+    <item>
+      <title>{{ post.data.title }}</title>
+      <description>{{ post.data.description or post.templateContent | striptags | truncate(200) }}</description>
+      <pubDate>{{ post.date | rssDate }}</pubDate>
+      <link>https://abalol.xyz{{ post.url }}</link>
+      <guid isPermaLink="true">https://abalol.xyz{{ post.url }}</guid>
+    </item>
+    {%- endfor -%}
+  </channel>
+</rss>

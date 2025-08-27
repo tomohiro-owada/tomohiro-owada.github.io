@@ -16,6 +16,30 @@ module.exports = function(eleventyConfig) {
     return d.toLocaleDateString();
   });
   
+  // RSS date filter
+  eleventyConfig.addFilter("rssDate", (date) => {
+    return new Date(date).toUTCString();
+  });
+  
+  // Get date helper
+  eleventyConfig.addFilter("getDate", (post) => post.date);
+  
+  // Limit filter
+  eleventyConfig.addFilter("limit", (array, n) => array.slice(0, n));
+  
+  // Strip tags filter
+  eleventyConfig.addFilter("striptags", (str) => {
+    return str.replace(/<[^>]*>/g, '');
+  });
+  
+  // Truncate filter
+  eleventyConfig.addFilter("truncate", (str, length) => {
+    if (str.length > length) {
+      return str.substring(0, length) + '...';
+    }
+    return str;
+  });
+  
   // Add slug filter for URLs
   eleventyConfig.addFilter("slug", (str) => {
     return str.toString().toLowerCase()

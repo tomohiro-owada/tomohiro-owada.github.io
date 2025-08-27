@@ -1,6 +1,7 @@
 ---
 title: 2025年1月の別の記事
 date: 2025-01-20
+description: 同じ月の記事を表示する機能をテストするための記事です。
 tags: 
   - test
   - january

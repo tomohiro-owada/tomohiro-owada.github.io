@@ -3,7 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ title or "Blog" }}</title>
+    <title>{{ title or "Blog" }} | Tomo's Diary</title>
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="{{ description or excerpt or "Tomo's Diary - 技術や日常について綴るブログ" }}">
+    <meta name="author" content="Tomohiro Owada">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://abalol.xyz{{ page.url }}">
+    <meta property="og:title" content="{{ title or 'Blog' }} | Tomo's Diary">
+    <meta property="og:description" content="{{ description or excerpt or "Tomo's Diary - 技術や日常について綴るブログ" }}">
+    <meta property="og:image" content="{{ ogImage or "https://abalol.xyz/images/og-default.jpg" }}">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://abalol.xyz{{ page.url }}">
+    <meta property="twitter:title" content="{{ title or 'Blog' }} | Tomo's Diary">
+    <meta property="twitter:description" content="{{ description or excerpt or "Tomo's Diary - 技術や日常について綴るブログ" }}">
+    <meta property="twitter:image" content="{{ ogImage or "https://abalol.xyz/images/og-default.jpg" }}">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://abalol.xyz{{ page.url }}">
+    
+    <!-- RSS Feed -->
+    <link rel="alternate" type="application/rss+xml" title="Tomo's Diary RSS Feed" href="/rss.xml">
+    
     <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>

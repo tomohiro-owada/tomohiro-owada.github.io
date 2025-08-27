@@ -1,6 +1,54 @@
+const Image = require("@11ty/eleventy-img");
+
 module.exports = function(eleventyConfig) {
   eleventyConfig.addPassthroughCopy("css");
   eleventyConfig.addPassthroughCopy("CNAME");
+  
+  // Image optimization shortcode
+  eleventyConfig.addNunjucksAsyncShortcode("image", async function(src, alt, sizes) {
+    let metadata = await Image(src, {
+      widths: [300, 600, 1200],
+      formats: ["webp", "jpeg"],
+      outputDir: "./_site/img/",
+      urlPath: "/img/",
+      sharpOptions: {
+        animated: true
+      }
+    });
+
+    let imageAttributes = {
+      alt,
+      sizes: sizes || "100vw",
+      loading: "lazy",
+      decoding: "async",
+    };
+
+    return Image.generateHTML(metadata, imageAttributes);
+  });
+  
+  // Responsive image shortcode with custom sizes
+  eleventyConfig.addNunjucksAsyncShortcode("responsiveImage", async function(src, alt, widths, sizes) {
+    let metadata = await Image(src, {
+      widths: widths ? widths.split(",").map(w => parseInt(w)) : [300, 600, 1200],
+      formats: ["webp", "jpeg"],
+      outputDir: "./_site/img/",
+      urlPath: "/img/",
+      sharpOptions: {
+        animated: true
+      }
+    });
+
+    let imageAttributes = {
+      alt,
+      sizes: sizes || "(max-width: 600px) 100vw, (max-width: 1200px) 50vw, 800px",
+      loading: "lazy",
+      decoding: "async",
+    };
+
+    return Image.generateHTML(metadata, imageAttributes);
+  });
+  
+  // Keep original images for markdown compatibility
   eleventyConfig.addPassthroughCopy("images");
   
   // Add date filter

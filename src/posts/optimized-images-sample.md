@@ -18,7 +18,7 @@ tags:
 
 ## カスタムサイズ指定
 
-{% image "./images/465-200x300.jpg", "カスタムサイズの画像", "(max-width: 600px) 100vw, 50vw" %}
+{% image "./images/465-200x300.jpg", "カスタムサイズの画像", "(max-width: 400px) 100vw, (max-width: 800px) 80vw, 400px" %}
 
 ## レスポンシブ画像（幅を指定）
 

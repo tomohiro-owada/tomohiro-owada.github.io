@@ -6,8 +6,9 @@ module.exports = function(eleventyConfig) {
   
   // Image optimization shortcode
   eleventyConfig.addNunjucksAsyncShortcode("image", async function(src, alt, sizes) {
+    // 元画像のサイズに基づいて適切な幅を生成
     let metadata = await Image(src, {
-      widths: [300, 600, 1200],
+      widths: [200, 400, 800, 1200, 1600, "auto"],
       formats: ["webp", "jpeg"],
       outputDir: "./_site/img/",
       urlPath: "/img/",
@@ -18,7 +19,7 @@ module.exports = function(eleventyConfig) {
 
     let imageAttributes = {
       alt,
-      sizes: sizes || "100vw",
+      sizes: sizes || "(max-width: 400px) 100vw, (max-width: 800px) 80vw, 800px",
       loading: "lazy",
       decoding: "async",
     };
@@ -28,8 +29,11 @@ module.exports = function(eleventyConfig) {
   
   // Responsive image shortcode with custom sizes
   eleventyConfig.addNunjucksAsyncShortcode("responsiveImage", async function(src, alt, widths, sizes) {
+    let widthArray = widths ? widths.split(",").map(w => parseInt(w)) : [200, 400, 800, 1200, 1600];
+    widthArray.push("auto"); // 元のサイズも含める
+    
     let metadata = await Image(src, {
-      widths: widths ? widths.split(",").map(w => parseInt(w)) : [300, 600, 1200],
+      widths: widthArray,
       formats: ["webp", "jpeg"],
       outputDir: "./_site/img/",
       urlPath: "/img/",

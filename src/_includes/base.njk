@@ -45,11 +45,23 @@
     <link rel="icon" href="/icon-192.png" type="image/png" sizes="192x192">
     <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
+    <!-- Wordmark font: subset to the site name only (text= param), so it's tiny -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600&text=Tomo%27s%20Diary&display=swap">
+
     <link rel="stylesheet" href="/css/style.css?v={{ assetVersion.css }}">
 </head>
 <body{% if bodyClass %} class="{{ bodyClass }}"{% endif %}>
-    <header>
-        <h1><a href="/">Tomo's Diary</a></h1>
+    {%- set siteNameTag = "h1" if page.url == "/" else "div" %}
+    <header class="site-header">
+        <a class="site-brand" href="/" aria-label="{{ site.title }} トップページ">
+            <img class="site-brand__icon" src="/icon-192.png" alt="" width="44" height="44" decoding="async">
+            <span class="site-brand__text">
+                <{{ siteNameTag }} class="site-brand__name">{{ site.title }}</{{ siteNameTag }}>
+                <span class="site-brand__tagline">{%- for part in site.tagline.split("、") -%}<span>{{ part }}{% if not loop.last %}、{% endif %}</span>{%- endfor -%}</span>
+            </span>
+        </a>
     </header>
     <main>
         {{ content | safe }}

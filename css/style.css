@@ -586,3 +586,110 @@ main p.all-tags-link {
         transform: none;
     }
 }
+
+/* ===== Site header (wordmark + icon + tagline) ===== */
+.site-header {
+    position: relative;
+    padding: 1.15rem 1rem 1.05rem;
+    text-align: left;
+    background: linear-gradient(180deg, #fafbfc 0%, #fff 100%);
+    border-bottom: 1px solid #eee;
+}
+
+/* thin tri-color accent matching the category colors */
+.site-header::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, #8fb3ee 0%, #8fb3ee 33.3%, #f3c27f 33.3%, #f3c27f 66.6%, #8ccfa6 66.6%, #8ccfa6 100%);
+}
+
+.site-brand {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.8rem;
+    width: fit-content;
+    margin: 0 auto;
+    color: var(--primary-color);
+    text-decoration: none;
+}
+
+.site-brand:hover {
+    text-decoration: none;
+}
+
+.site-brand__icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    box-shadow: 0 0 0 2px #fff, 0 0 0 3px #e6e6e6;
+    transition: transform 0.25s ease;
+}
+
+.site-brand:hover .site-brand__icon {
+    transform: rotate(-8deg) scale(1.04);
+}
+
+.site-brand__text {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+}
+
+.site-header .site-brand__name {
+    margin: 0;
+    font-family: "Fraunces", "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+    font-optical-sizing: auto;
+    font-size: 1.75rem;
+    font-weight: 600;
+    line-height: 1.15;
+    letter-spacing: -0.01em;
+    color: #222;
+}
+
+.site-brand:hover .site-brand__name {
+    color: #1f4fa3;
+}
+
+.site-brand__tagline {
+    margin-top: 0.2rem;
+    font-size: 0.78rem;
+    line-height: 1.5;
+    letter-spacing: 0.04em;
+    color: #777;
+}
+
+/* wrap the tagline only at the 、 phrase boundary */
+.site-brand__tagline > span {
+    display: inline-block;
+}
+
+@media (max-width: 480px) {
+    .site-header {
+        padding: 0.95rem 1rem 0.9rem;
+    }
+    .site-brand {
+        gap: 0.65rem;
+    }
+    .site-brand__icon {
+        width: 40px;
+        height: 40px;
+    }
+    .site-header .site-brand__name {
+        font-size: 1.45rem;
+    }
+    .site-brand__tagline {
+        font-size: 0.7rem;
+        letter-spacing: 0.02em;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .site-brand__icon { transition: none; }
+    .site-brand:hover .site-brand__icon { transform: none; }
+}

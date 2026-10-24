@@ -3,7 +3,7 @@
 {%- set currentMonth = currentPost.date.getMonth() -%}
 
 <div class="same-month-posts">
-  <h3>{{ currentYear }}年{{ (currentMonth + 1).toString().padStart(2, '0') }}月の記事</h3>
+  <h2>{{ currentYear }}年{{ (currentMonth + 1).toString().padStart(2, '0') }}月の記事</h2>
   <ul>
   {%- for post in collections.posts -%}
     {%- if post.date.getFullYear() == currentYear and post.date.getMonth() == currentMonth -%}

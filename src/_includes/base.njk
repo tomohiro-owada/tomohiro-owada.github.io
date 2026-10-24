@@ -1,61 +1,117 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="{{ site.language }}">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ title or "Blog" }} | Tomo's Diary</title>
-    
-    {%- set pageDescription = description or excerpt or site.description -%}
-    {%- set pageTitle = (title or "Blog") + " | " + site.title -%}
+    {%- if site.gscVerification %}
+    <meta name="google-site-verification" content="{{ site.gscVerification }}">
+    {%- endif %}
+    {%- if site.ga4Id %}
+    <!-- Google Analytics 4 (async; does not block rendering) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id={{ site.ga4Id | urlencode }}"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag("js", new Date());
+      gtag("config", {{ site.ga4Id | dump | safe }});
+    </script>
+    {%- endif %}
+    {#- ---------- per-page meta (title / description / robots) ---------- #}
+    {%- set isPost = (pageType == "post") %}
+    {%- set tagPosts = (collections[tag] | reverse) if (pageType == "tag") else [] %}
+    {%- if pageType == "home" -%}
+      {%- set pageTitle = site.title + " | " + site.shortDescription -%}
+      {%- set pageDescription = site.description -%}
+    {%- elif pageType == "tag" -%}
+      {%- set catInfo = site.categories[tag] -%}
+      {%- set pageTitle = "#" + tag + " の記事一覧（" + tagPosts.length + "件） | " + site.title -%}
+      {%- set titles = [] -%}
+      {%- for tp in tagPosts | limit(3) -%}{%- set titles = (titles.push(tp.data.title), titles) -%}{%- endfor -%}
+      {%- set pageDescription = (catInfo.description + "。" if catInfo else "") + site.title + "の「" + tag + "」タグの記事一覧（" + tagPosts.length + "件）：" + (titles | join(" / ")) -%}
+    {%- else -%}
+      {%- set pageTitle = (title or "Blog") + " | " + site.title -%}
+      {%- set pageDescription = description or site.description -%}
+    {%- endif -%}
+    {%- if pageType == "tag" and tagPosts.length < site.tagIndexMinPosts and not site.categories[tag] -%}
+      {%- set robots = "noindex, follow" -%}
+    {%- endif -%}
     {%- set heroImage = image or ogImage or site.defaultImage -%}
     {%- set heroImageAbs = heroImage | absoluteUrl(site.url) -%}
     {%- set heroAlt = imageAlt or title or site.defaultImageAlt -%}
-    {%- set pageUrl = page.url | absoluteUrl(site.url) -%}
-    <!-- SEO Meta Tags -->
+    {%- set pageUrl = page.url | absoluteUrl(site.url) %}
+    <title>{{ pageTitle }}</title>
     <meta name="description" content="{{ pageDescription }}">
-    <meta name="author" content="{{ site.author }}">
+    <meta name="author" content="{{ site.person.name }}">
+    <meta name="robots" content="{{ robots or 'index, follow, max-image-preview:large, max-snippet:-1' }}">
+    <link rel="canonical" href="{{ pageUrl }}">
+    <link rel="author" href="/about/">
 
-    <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="{{ 'article' if (page.url and '/posts/' in page.url) else 'website' }}">
+    <!-- Open Graph -->
+    <meta property="og:type" content="{{ 'article' if isPost else ('profile' if pageType == 'about' else 'website') }}">
     <meta property="og:site_name" content="{{ site.title }}">
+    <meta property="og:locale" content="{{ site.locale }}">
     <meta property="og:url" content="{{ pageUrl }}">
-    <meta property="og:title" content="{{ pageTitle }}">
+    <meta property="og:title" content="{{ title if isPost else pageTitle }}">
     <meta property="og:description" content="{{ pageDescription }}">
     <meta property="og:image" content="{{ heroImageAbs }}">
+    {%- if image %}
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    {%- endif %}
     <meta property="og:image:alt" content="{{ heroAlt }}">
-    <meta property="og:locale" content="ja_JP">
+    {%- if isPost %}
+    <meta property="article:published_time" content="{{ page.date | isoDate }}">
+    <meta property="article:modified_time" content="{{ (updated or page.date) | isoDate }}">
+    <meta property="article:author" content="{{ '/about/' | absoluteUrl(site.url) }}">
+    {%- set postTags = tags | realTags %}
+    <meta property="article:section" content="{{ postTags[0] }}">
+    {%- for t in postTags %}
+    <meta property="article:tag" content="{{ t }}">
+    {%- endfor %}
+    {%- endif %}
 
-    <!-- Twitter -->
+    <!-- Twitter / X -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:url" content="{{ pageUrl }}">
-    <meta name="twitter:title" content="{{ pageTitle }}">
+    <meta name="twitter:site" content="{{ site.twitter }}">
+    <meta name="twitter:creator" content="{{ site.twitter }}">
+    <meta name="twitter:title" content="{{ title if isPost else pageTitle }}">
     <meta name="twitter:description" content="{{ pageDescription }}">
     <meta name="twitter:image" content="{{ heroImageAbs }}">
     <meta name="twitter:image:alt" content="{{ heroAlt }}">
 
-    <!-- Canonical URL -->
-    <link rel="canonical" href="{{ pageUrl }}">
+    <!-- Feeds / AI-readable summaries -->
+    <link rel="alternate" type="application/rss+xml" title="{{ site.title }} RSS" href="/rss.xml">
+    <link rel="alternate" type="text/plain" title="llms.txt" href="/llms.txt">
+    <link rel="sitemap" type="application/xml" href="/sitemap.xml">
 
-    <!-- RSS Feed -->
-    <link rel="alternate" type="application/rss+xml" title="Tomo's Diary RSS Feed" href="/rss.xml">
-    
     <!-- Favicon / app icons -->
     <link rel="icon" href="/favicon.ico" sizes="48x48">
     <link rel="icon" href="/favicon-32x32.png" type="image/png" sizes="32x32">
     <link rel="icon" href="/icon-192.png" type="image/png" sizes="192x192">
     <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
-    <!-- Wordmark font: subset to the site name only (text= param), so it's tiny -->
+    <!-- Wordmark font: subset to the site name only (text= param), display=swap -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600&text=Tomo%27s%20Diary&display=swap">
 
     <link rel="stylesheet" href="/css/style.css?v={{ assetVersion.css }}">
+
+    {%- if pageType == "home" -%}
+      {%- set ldPosts = collections.posts | reverse -%}
+    {%- elif pageType == "tag" -%}
+      {%- set ldPosts = tagPosts -%}
+    {%- else -%}
+      {%- set ldPosts = [] -%}
+    {%- endif %}
+    <script type="application/ld+json">
+{{ { type: pageType or "page", url: page.url, title: (title if (isPost or pageType == "about") else pageTitle), description: pageDescription, image: image, imageAlt: imageAlt, date: page.date, updated: updated, tags: tags, tag: tag, posts: ldPosts } | jsonLd | safe }}
+    </script>
 </head>
 <body{% if bodyClass %} class="{{ bodyClass }}"{% endif %}>
     {%- set siteNameTag = "h1" if page.url == "/" else "div" %}
     <header class="site-header">
-        <a class="site-brand" href="/" aria-label="{{ site.title }} トップページ">
+        <a class="site-brand" href="/">
             <img class="site-brand__icon" src="/icon-192.png" alt="" width="44" height="44" decoding="async">
             <span class="site-brand__text">
                 <{{ siteNameTag }} class="site-brand__name">{{ site.title }}</{{ siteNameTag }}>
@@ -66,8 +122,15 @@
     <main>
         {{ content | safe }}
     </main>
-    <footer>
-        <p>&copy; {{ page.date.getFullYear() if page.date else "2025" }} All rights reserved.</p>
+    <footer class="site-footer">
+        <nav class="footer-nav" aria-label="サイト">
+            <a href="/about/">About（著者について）</a>
+            <a href="/tags/">タグ一覧</a>
+            <a href="/rss.xml">RSS</a>
+            <a href="https://x.com/{{ site.person.handle }}" rel="me noopener">X</a>
+            <a href="https://github.com/tomohiro-owada" rel="me noopener">GitHub</a>
+        </nav>
+        <p>&copy; {{ page.date.getFullYear() if page.date else "2026" }} <a href="/about/">{{ site.person.name }}</a></p>
     </footer>
 </body>
 </html>

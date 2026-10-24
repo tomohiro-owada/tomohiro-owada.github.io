@@ -1,0 +1,23 @@
+---
+permalink: /llms-full.txt
+eleventyExcludeFromCollections: true
+---
+# {{ site.title | safe }} — 全記事テキスト
+
+> {{ site.description | safe }}
+
+著者: {{ site.person.name }}（{{ site.person.nameJa }}、@{{ site.person.handle }}）／ {{ site.person.jobTitle | safe }} in Manila ／ {{ site.url }}/about/
+{% for post in collections.posts | reverse %}
+
+---
+
+# {{ post.data.title | safe }}
+
+- URL: {{ site.url }}{{ post.url }}
+- 公開日: {{ post.date | date("%Y-%m-%d") }}{% if post.data.updated %}
+- 更新日: {{ post.data.updated | date("%Y-%m-%d") }}{% endif %}
+- タグ: {{ post.data.tags | realTags | join(", ") }}
+- 概要: {{ post.data.description | safe }}
+
+{{ post.inputPath | rawMarkdown | safe }}
+{% endfor %}

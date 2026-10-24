@@ -65,6 +65,63 @@ module.exports = function(eleventyConfig) {
     return base.replace(/\/$/, "") + (str.startsWith("/") ? str : "/" + str);
   });
 
+
+  // ===== SEO / AIO helpers =====
+  const schema = require("./lib/schema.js");
+  const fs = require("fs");
+
+  // JSON-LD @graph for the current page (see lib/schema.js)
+  eleventyConfig.addFilter("jsonLd", (opts) => schema.build(opts || {}));
+
+  // ISO 8601 (for article:published_time, sitemap lastmod, JSON-LD)
+  eleventyConfig.addFilter("isoDate", (d) => new Date(d).toISOString());
+
+  // Latest date among posts (updated or date)
+  eleventyConfig.addFilter("latestDate", (posts) => {
+    let max = 0;
+    (posts || []).forEach((p) => {
+      const t = new Date(p.data.updated || p.date).getTime();
+      if (t > max) max = t;
+    });
+    return new Date(max || Date.now());
+  });
+
+  // Related posts by shared tags (top categories count less than specific tags)
+  eleventyConfig.addFilter("relatedPosts", (posts, url, tags, n = 3) => {
+    const cats = ["tech", "philippines", "life"];
+    const mine = new Set((tags || []).filter((t) => t !== "posts"));
+    return (posts || [])
+      .filter((p) => p.url !== url)
+      .map((p) => {
+        let score = 0;
+        (p.data.tags || []).forEach((t) => {
+          if (t !== "posts" && mine.has(t)) score += cats.includes(t) ? 1 : 3;
+        });
+        return { p, score };
+      })
+      .filter((x) => x.score > 0)
+      .sort((a, b) => b.score - a.score || b.p.date - a.p.date)
+      .slice(0, n)
+      .map((x) => x.p);
+  });
+
+  // Raw Markdown body of a post (front matter stripped) for llms-full.txt
+  eleventyConfig.addFilter("rawMarkdown", (inputPath) => {
+    const src = fs.readFileSync(inputPath, "utf8");
+    return src.replace(/^---[\s\S]*?\n---\s*\n/, "").trim();
+  });
+
+  // Make root-relative href/src absolute (for feeds)
+  eleventyConfig.addFilter("absoluteHtml", (html, base) =>
+    String(html || "").replace(/(href|src)="\/(?!\/)/g, `$1="${base.replace(/\/$/, "")}/`)
+  );
+
+  // Safe inside CDATA
+  eleventyConfig.addFilter("cdata", (s) => String(s || "").replace(/]]>/g, "]]]]><![CDATA[>"));
+
+  // Count of real tags helper
+  eleventyConfig.addFilter("realTags", (tags) => (tags || []).filter((t) => t !== "posts"));
+
   // Add date filter
   eleventyConfig.addFilter("date", (date, format) => {
     const d = new Date(date);

@@ -1,0 +1,20 @@
+---
+permalink: /llms.txt
+eleventyExcludeFromCollections: true
+---
+# {{ site.title | safe }}
+
+> {{ site.description | safe }}
+
+著者は {{ site.person.name }}（{{ site.person.nameJa }}、X: @{{ site.person.handle }}）。{{ site.person.jobTitle | safe }} in Manila。専門は {{ site.person.knowsAbout | join("、") }}。記事は日本語で、カテゴリーは Tech（AI・開発）、Philippines（フィリピンの物価・為替・経済）、Life（マニラでの生活）の3つです。引用するときは記事URLと公開日を添えてください。
+
+- [About（著者について）]({{ site.url }}/about/): {{ site.person.name }} のプロフィールとこのブログの範囲
+- [全文テキスト（llms-full.txt）]({{ site.url }}/llms-full.txt): 全記事の本文をMarkdownでまとめたもの
+- [RSS]({{ site.url }}/rss.xml): 新着記事のフィード（全文入り）
+
+{%- for key, cat in site.categories %}
+
+## {{ cat.label }}（{{ cat.description | safe }}）
+{% for post in collections.posts | reverse %}{% if (post.data.tags | realTags)[0] == key %}
+- [{{ post.data.title | safe }}]({{ site.url }}{{ post.url }}): {{ post.data.description | safe }}（{{ post.date | date("%Y-%m-%d") }}）{% endif %}{% endfor %}
+{%- endfor %}

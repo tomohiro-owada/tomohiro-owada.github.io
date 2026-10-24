@@ -1,10 +1,12 @@
 ---
 layout: base.njk
-title: Tags
+title: タグ一覧
+pageType: tags
+robots: "noindex, follow"
 description: Tomo's Diaryのタグ一覧。記事をカテゴリ別に整理して探すことができます。
 ---
 
-<h2>すべてのタグ</h2>
+<h1>すべてのタグ</h1>
 <ul>
 {%- for tag in collections.tagList -%}
   <li><a href="/tags/{{ tag | slug }}/">{{ tag }}</a> ({{ collections[tag].length }})</li>

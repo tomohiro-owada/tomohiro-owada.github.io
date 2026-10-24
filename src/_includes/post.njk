@@ -2,14 +2,25 @@
 layout: base.njk
 ---
 
-<article>
+<article class="post">
   {%- set heroSrc = image or ogImage or site.defaultImage -%}
   <figure class="hero">
     <img src="{{ heroSrc }}" alt="{{ imageAlt or title }}" width="1200" height="630" loading="eager" decoding="async" fetchpriority="high">
   </figure>
   <header>
     <h1>{{ title }}</h1>
-    <time datetime="{{ page.date | date('%Y-%m-%d') }}">{{ page.date | date("%Y年%m月%d日") }}</time>
+    <div class="post-meta">
+      <span class="post-meta__dates">
+        <span>公開 <time datetime="{{ page.date | isoDate }}">{{ page.date | date("%Y年%m月%d日") }}</time></span>
+        {%- if updated and (updated | isoDate) != (page.date | isoDate) %}
+        <span>更新 <time datetime="{{ updated | isoDate }}">{{ updated | date("%Y年%m月%d日") }}</time></span>
+        {%- endif %}
+      </span>
+      <a class="post-meta__author" href="/about/" rel="author">
+        <img src="/icon-192.png" alt="" width="22" height="22" loading="lazy" decoding="async">
+        <span>{{ site.person.name }}</span>
+      </a>
+    </div>
     {%- if tags -%}
     <div class="tags">
       {%- for tag in tags -%}
@@ -19,9 +30,76 @@ layout: base.njk
       {%- endfor -%}
     </div>
     {%- endif -%}
+    {%- set shareCompact = true %}
+    {% include "share.njk" %}
   </header>
-  
+
   {{ content | safe }}
-  
+
+  {%- set shareCompact = false %}
+  {% include "share.njk" %}
+
+  <aside class="author-box" aria-label="この記事を書いた人">
+    <img src="/icon-192.png" alt="{{ site.person.name }}のアイコン" width="56" height="56" loading="lazy" decoding="async">
+    <div>
+      <p class="author-box__name"><a href="/about/" rel="author">{{ site.person.name }}（{{ site.person.nameJa }}）</a></p>
+      <p class="author-box__bio">マニラ在住の{{ site.person.jobTitleJa }}。{{ site.person.knowsAbout | join("・") }}などのAI技術と、フィリピンでの暮らしについて書いています。<a href="https://x.com/{{ site.person.handle }}" rel="me noopener">X @{{ site.person.handle }}</a></p>
+    </div>
+  </aside>
+
+  {%- set related = collections.posts | relatedPosts(page.url, tags, 3) %}
+  {%- if related.length %}
+  <section class="related-posts" aria-labelledby="related-heading">
+    <h2 id="related-heading">関連記事</h2>
+    <ul class="related-posts__list">
+      {%- for rp in related %}
+      <li class="related-card">
+        <a href="{{ rp.url }}">
+          <img src="{{ rp.data.image or site.defaultImage }}" alt="{{ rp.data.imageAlt or rp.data.title }}" width="1200" height="630" loading="lazy" decoding="async">
+          <span class="related-card__title">{{ rp.data.title }}</span>
+          <time datetime="{{ rp.date | isoDate }}">{{ rp.date | date("%Y年%m月%d日") }}</time>
+        </a>
+      </li>
+      {%- endfor %}
+    </ul>
+  </section>
+  {%- endif %}
+
   {% include "same-month-posts.njk" %}
 </article>
+<p class="sr-only" role="status" aria-live="polite" id="share-status"></p>
+<script>
+(function () {
+  var status = document.getElementById("share-status");
+  // Optional GA4 "share" event (only when gtag.js is loaded via site.ga4Id)
+  function track(el) {
+    if (typeof window.gtag === "function") {
+      window.gtag("event", "share", { method: el.getAttribute("data-share-method"), content_type: "article", item_id: location.pathname });
+    }
+  }
+  document.querySelectorAll("a[data-share-method]").forEach(function (a) {
+    a.addEventListener("click", function () { track(a); });
+  });
+  if (navigator.clipboard && window.isSecureContext) {
+    document.querySelectorAll("[data-share-copy]").forEach(function (b) {
+      b.hidden = false;
+      b.addEventListener("click", function () {
+        navigator.clipboard.writeText(b.getAttribute("data-url")).then(function () {
+          track(b);
+          b.classList.add("is-done");
+          status.textContent = "リンクをコピーしました";
+          setTimeout(function () { b.classList.remove("is-done"); status.textContent = ""; }, 2000);
+        });
+      });
+    });
+  }
+  if (navigator.share) {
+    document.querySelectorAll("[data-share-native]").forEach(function (b) {
+      b.hidden = false;
+      b.addEventListener("click", function () {
+        navigator.share({ title: b.getAttribute("data-title"), url: b.getAttribute("data-url") }).then(function () { track(b); }).catch(function () {});
+      });
+    });
+  }
+})();
+</script>

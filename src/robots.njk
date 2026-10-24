@@ -1,0 +1,33 @@
+---
+permalink: /robots.txt
+eleventyExcludeFromCollections: true
+---
+# {{ site.title | safe }} — all crawlers welcome, including search and AI crawlers.
+User-agent: *
+Allow: /
+
+# AI search / answer engines and training crawlers (explicitly allowed)
+User-agent: GPTBot
+User-agent: OAI-SearchBot
+User-agent: ChatGPT-User
+User-agent: PerplexityBot
+User-agent: Perplexity-User
+User-agent: ClaudeBot
+User-agent: Claude-User
+User-agent: Claude-SearchBot
+User-agent: anthropic-ai
+User-agent: Google-Extended
+User-agent: Googlebot
+User-agent: Bingbot
+User-agent: Applebot
+User-agent: Applebot-Extended
+User-agent: xAI-Bot
+User-agent: Grok
+User-agent: Meta-ExternalAgent
+User-agent: CCBot
+User-agent: DuckAssistBot
+User-agent: cohere-ai
+User-agent: MistralAI-User
+Allow: /
+
+Sitemap: {{ site.url }}/sitemap.xml

@@ -1,0 +1,40 @@
+---
+layout: base.njk
+title: About｜Tomohiro Owada（大和田知洋）について
+pageType: about
+permalink: /about/
+description: "Tomo's Diaryを書いているTomohiro Owada（大和田知洋、@abalol）のプロフィール。マニラ在住のAIエンジニア・経営者で、RAG・AIエージェント・MCPに取り組んでいます。"
+eleventyExcludeFromCollections: false
+---
+<p class="draft-note">【下書き】このページは内容確認中のドラフトです。公開前にご本人が確認してください。</p>
+
+<div class="about-profile">
+  <img src="/icon-192.png" alt="{{ site.person.name }}（@{{ site.person.handle }}）のアイコン" width="88" height="88" decoding="async">
+  <div>
+    <h1>{{ site.person.name }}（{{ site.person.nameJa }}）</h1>
+    <p>{{ site.person.jobTitle }} in Manila ／ @{{ site.person.handle }}</p>
+  </div>
+</div>
+
+<h2>プロフィール</h2>
+<ul>
+  <li>名前：{{ site.person.name }}（{{ site.person.nameJa }}）、ハンドル @{{ site.person.handle }}</li>
+  <li>仕事：AIエンジニア・経営者（{{ site.person.company }}）</li>
+  <li>拠点：フィリピン・マニラ</li>
+  <li>専門：RAG、AIエージェント、MCP（Model Context Protocol）</li>
+</ul>
+
+<h2>このブログについて</h2>
+<p>Tomo's Diary は、マニラに住むAIエンジニアとして試したこと・調べたことを書くブログです。</p>
+<ul>
+  <li><a href="/tags/tech/">Tech</a>：AIエージェントやRAG、開発ツールを実際に使ってみた記録</li>
+  <li><a href="/tags/philippines/">Philippines</a>：フィリピンの物価・為替・経済のニュースを、住んでいる立場から読んだもの</li>
+  <li><a href="/tags/life/">Life</a>：マニラでの生活、日本の手続き、買い物など日々の記録</li>
+</ul>
+
+<h2>リンク</h2>
+<ul>
+  <li>X：<a href="https://x.com/{{ site.person.handle }}" rel="me noopener">@{{ site.person.handle }}</a></li>
+  <li>GitHub：<a href="https://github.com/tomohiro-owada" rel="me noopener">tomohiro-owada</a></li>
+  <li>RSS：<a href="/rss.xml">/rss.xml</a></li>
+</ul>

@@ -10,6 +10,7 @@ pagination:
   addAllPagesToCollections: true
 layout: base.njk
 bodyClass: tag-page wide
+pageType: tag
 renderData:
   title: "タグ: {{ tag }}"
 permalink: /tags/{{ tag | slug }}/
@@ -21,6 +22,7 @@ permalink: /tags/{{ tag | slug }}/
 <h1 class="tag-heading"><span class="tag-heading__name">#{{ tag }}</span> の記事<span class="tag-heading__count">（{{ cardPosts.length }}件）</span></h1>
 
 {%- set featured = false %}
+{%- set cardHeading = "h2" %}
 {% include "post-cards.njk" %}
 
 <p class="all-tags-link"><a href="/tags/">すべてのタグを見る →</a></p>

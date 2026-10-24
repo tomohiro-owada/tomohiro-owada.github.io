@@ -3,22 +3,32 @@ permalink: /rss.xml
 eleventyExcludeFromCollections: true
 ---
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:dc="http://purl.org/dc/elements/1.1/">
   <channel>
-    <title>Tomo's Diary</title>
-    <description>技術や日常について綴るブログ</description>
-    <link>https://abalol.xyz/</link>
-    <atom:link href="https://abalol.xyz/rss.xml" rel="self" type="application/rss+xml"/>
-    <lastBuildDate>{{ collections.posts | reverse | first | getDate | rssDate }}</lastBuildDate>
+    <title>{{ site.title }}</title>
+    <description>{{ site.description }}</description>
+    <link>{{ site.url }}/</link>
+    <atom:link href="{{ site.url }}/rss.xml" rel="self" type="application/rss+xml"/>
+    <lastBuildDate>{{ collections.posts | latestDate | rssDate }}</lastBuildDate>
     <language>ja</language>
-    {%- for post in collections.posts | reverse | limit(20) -%}
+    <image>
+      <url>{{ site.url }}/icon-512.png</url>
+      <title>{{ site.title }}</title>
+      <link>{{ site.url }}/</link>
+    </image>
+    {%- for post in collections.posts | reverse | limit(20) %}
     <item>
       <title>{{ post.data.title }}</title>
-      <description>{{ post.data.description or post.templateContent | striptags | truncate(200) }}</description>
+      <link>{{ site.url }}{{ post.url }}</link>
+      <guid isPermaLink="true">{{ site.url }}{{ post.url }}</guid>
       <pubDate>{{ post.date | rssDate }}</pubDate>
-      <link>https://abalol.xyz{{ post.url }}</link>
-      <guid isPermaLink="true">https://abalol.xyz{{ post.url }}</guid>
+      <dc:creator>{{ site.person.name }}</dc:creator>
+      {%- for t in post.data.tags | realTags %}
+      <category>{{ t }}</category>
+      {%- endfor %}
+      <description>{{ post.data.description or (post.templateContent | striptags | truncate(200)) }}</description>
+      <content:encoded><![CDATA[{% if post.data.image %}<p><img src="{{ site.url }}{{ post.data.image }}" alt="{{ post.data.imageAlt or post.data.title }}" width="1200" height="630"></p>{% endif %}{{ post.templateContent | absoluteHtml(site.url) | cdata | safe }}]]></content:encoded>
     </item>
-    {%- endfor -%}
+    {%- endfor %}
   </channel>
 </rss>

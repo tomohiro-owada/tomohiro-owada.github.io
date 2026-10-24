@@ -3,6 +3,10 @@ layout: base.njk
 ---
 
 <article>
+  {%- set heroSrc = image or ogImage or site.defaultImage -%}
+  <figure class="hero">
+    <img src="{{ heroSrc }}" alt="{{ imageAlt or title }}" width="1200" height="630" loading="eager" decoding="async" fetchpriority="high">
+  </figure>
   <header>
     <h1>{{ title }}</h1>
     <time datetime="{{ page.date | date('%Y-%m-%d') }}">{{ page.date | date("%Y年%m月%d日") }}</time>

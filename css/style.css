@@ -21,7 +21,6 @@ body {
     font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Noto Sans JP", "Segoe UI", Roboto, Meiryo, sans-serif;
     line-height: 1.95;
     letter-spacing: 0.02em;
-    font-feature-settings: "palt" 0;
     color: var(--text-color);
     background-color: var(--bg-color);
 }

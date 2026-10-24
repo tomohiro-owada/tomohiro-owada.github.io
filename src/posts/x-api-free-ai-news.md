@@ -9,6 +9,7 @@ tags:
   - grok-bot
   - automation
 image: /images/x-api-free-ai-news-hero.png
+ogImage: https://abalol.xyz/images/x-api-free-ai-news-hero.png
 imageAlt: "紺色の背景に「有料のX APIを使わずに、毎朝AIニュースの朝刊を自動で作る仕組み」というタイトルと、朝日と新聞の線画"
 ---
 

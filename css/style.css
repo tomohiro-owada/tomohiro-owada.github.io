@@ -195,3 +195,17 @@ img {
     height: auto;
     display: block;
 }
+/* Hero image (first view) */
+.hero {
+    margin: 0 0 1.5rem;
+}
+
+.hero img {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1200 / 630;
+    object-fit: cover;
+    border-radius: 8px;
+    background-color: #f5f5f5;
+}

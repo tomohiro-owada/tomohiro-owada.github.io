@@ -55,6 +55,14 @@ module.exports = function(eleventyConfig) {
   // Keep original images for markdown compatibility
   eleventyConfig.addPassthroughCopy("images");
   
+  // 絶対URLにする（http(s)で始まるものはそのまま）
+  eleventyConfig.addFilter("absoluteUrl", (path, base) => {
+    if (!path) return path;
+    const str = String(path);
+    if (/^https?:\/\//.test(str)) return str;
+    return base.replace(/\/$/, "") + (str.startsWith("/") ? str : "/" + str);
+  });
+
   // Add date filter
   eleventyConfig.addFilter("date", (date, format) => {
     const d = new Date(date);

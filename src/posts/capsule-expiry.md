@@ -9,8 +9,7 @@ tags:
   - shopping
   - nespresso
   - lazada
-image: /images/capsule-expiry-hero.png
-ogImage: https://abalol.xyz/images/capsule-expiry-hero.png
+image: /images/posts/capsule-expiry/hero.png
 imageAlt: "ベージュの背景に「AIにNespresso互換カプセルを買わせたら、一番安い味は賞味期限が3日後だった」というタイトルと、アイスコーヒーのグラス、カプセル、カレンダーのイラスト"
 ---
 

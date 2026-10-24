@@ -270,3 +270,312 @@ article > header h1 {
     line-height: 1.45;
     margin-bottom: 0.4em;
 }
+
+/* ===== Home: post cards ===== */
+.home main {
+    max-width: 1040px;
+    padding-top: 2.25rem;
+}
+
+.category--tech        { --cat-bg: #e8f0fe; --cat-fg: #1f4fa3; --cat-bd: #c9daf8; }
+.category--philippines { --cat-bg: #fff3e0; --cat-fg: #a14a00; --cat-bd: #fbd9ad; }
+.category--life        { --cat-bg: #e7f5ec; --cat-fg: #1e6b3d; --cat-bd: #c4e5d0; }
+
+.category-nav {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.5rem 0.6rem;
+    margin-bottom: 2rem;
+    font-size: 0.9rem;
+    line-height: 1.4;
+}
+
+.category-nav__label {
+    color: #888;
+    font-size: 0.8rem;
+    letter-spacing: 0.08em;
+    margin-right: 0.2rem;
+}
+
+.category-pill {
+    display: inline-block;
+    padding: 0.35rem 0.95rem;
+    border-radius: 999px;
+    border: 1px solid var(--cat-bd);
+    background: var(--cat-bg);
+    color: var(--cat-fg);
+    font-weight: 600;
+    text-decoration: none;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.category-pill:hover {
+    text-decoration: none;
+    transform: translateY(-1px);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+}
+
+.category-nav__all {
+    margin-left: auto;
+    color: #666;
+    text-decoration: none;
+    font-size: 0.85rem;
+}
+
+main h2.section-title {
+    margin: 0 0 1.25rem;
+    font-size: 1.05rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #888;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.section-title::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: var(--border-color);
+}
+
+main ul.post-cards {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 2.5rem;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.75rem;
+}
+
+main .post-cards > li {
+    margin: 0;
+}
+
+.post-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    background: #fff;
+    border: 1px solid #ececec;
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.post-card:hover {
+    transform: translateY(-3px);
+    border-color: #e0e0e0;
+    box-shadow: 0 10px 28px rgba(0, 0, 0, 0.09);
+}
+
+.post-card__thumb {
+    display: block;
+    overflow: hidden;
+    background: #f3f3f3;
+}
+
+.post-card__thumb img {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1200 / 630;
+    object-fit: cover;
+    transition: transform 0.35s ease;
+}
+
+.post-card:hover .post-card__thumb img {
+    transform: scale(1.03);
+}
+
+.post-card__body {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    padding: 1.15rem 1.35rem 1.3rem;
+}
+
+.post-card__meta {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    margin-bottom: 0.6rem;
+    line-height: 1.4;
+}
+
+.post-card__meta time {
+    margin: 0;
+    font-size: 0.8rem;
+    color: #888;
+    letter-spacing: 0.04em;
+}
+
+.category-badge {
+    position: relative;
+    z-index: 1;
+    display: inline-block;
+    padding: 0.15rem 0.6rem;
+    border-radius: 6px;
+    background: var(--cat-bg);
+    color: var(--cat-fg);
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    text-decoration: none;
+}
+
+.category-badge:hover {
+    text-decoration: none;
+    filter: brightness(0.96);
+}
+
+main h3.post-card__title {
+    margin: 0 0 0.55rem;
+    font-size: 1.08rem;
+    line-height: 1.6;
+    letter-spacing: 0.01em;
+    font-weight: 700;
+}
+
+.post-card__title a {
+    color: var(--primary-color);
+    text-decoration: none;
+}
+
+/* Make the whole card clickable via the title link */
+.post-card__title a::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+}
+
+.post-card__title a:hover {
+    text-decoration: none;
+}
+
+.post-card:hover .post-card__title a {
+    color: var(--link-color);
+}
+
+main p.post-card__desc {
+    margin: 0 0 0.9rem;
+    font-size: 0.88rem;
+    line-height: 1.8;
+    color: #666;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    line-clamp: 3;
+    overflow: hidden;
+}
+
+.post-card__tags {
+    margin-top: auto;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    line-height: 1.4;
+}
+
+.chip {
+    position: relative;
+    z-index: 1;
+    display: inline-block;
+    padding: 0.2rem 0.55rem;
+    border-radius: 999px;
+    background: #f4f4f5;
+    color: #666;
+    font-size: 0.75rem;
+    text-decoration: none;
+}
+
+.chip:hover {
+    background: #e9e9eb;
+    color: #333;
+    text-decoration: none;
+}
+
+.post-card a:focus-visible {
+    outline: 2px solid var(--link-color);
+    outline-offset: 2px;
+}
+
+/* Featured (newest) card: full width, image beside text */
+.post-card--featured {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: 1.3fr 1fr;
+    align-items: center;
+}
+
+/* keep the full 1200x630 hero visible (no side crop of the title text) */
+.post-card--featured .post-card__thumb img {
+    height: auto;
+}
+
+.post-card--featured .post-card__body {
+    padding: 1.75rem 2rem;
+    justify-content: center;
+}
+
+main .post-card--featured h3.post-card__title {
+    font-size: 1.4rem;
+    line-height: 1.55;
+    margin-bottom: 0.8rem;
+}
+
+main .post-card--featured p.post-card__desc {
+    font-size: 0.93rem;
+    -webkit-line-clamp: 4;
+    line-clamp: 4;
+}
+
+.post-card--featured .post-card__tags {
+    margin-top: 0.4rem;
+}
+
+main p.all-tags-link {
+    text-align: center;
+    font-size: 0.9rem;
+}
+
+@media (max-width: 820px) {
+    .post-card--featured {
+        display: flex;
+    }
+    .post-card--featured .post-card__body {
+        padding: 1.2rem 1.35rem 1.35rem;
+    }
+    main .post-card--featured h3.post-card__title {
+        font-size: 1.2rem;
+    }
+}
+
+@media (max-width: 640px) {
+    main ul.post-cards {
+        grid-template-columns: 1fr;
+        gap: 1.25rem;
+    }
+    .category-nav__all {
+        margin-left: 0;
+        width: 100%;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .post-card,
+    .post-card__thumb img,
+    .category-pill {
+        transition: none;
+    }
+    .post-card:hover,
+    .post-card:hover .post-card__thumb img {
+        transform: none;
+    }
+}

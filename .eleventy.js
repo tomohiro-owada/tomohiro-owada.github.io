@@ -3,6 +3,8 @@ const Image = require("@11ty/eleventy-img");
 module.exports = function(eleventyConfig) {
   eleventyConfig.addPassthroughCopy("css");
   eleventyConfig.addPassthroughCopy("CNAME");
+  // favicon / app icons (X @abalol profile image) -> site root
+  eleventyConfig.addPassthroughCopy({ "favicon": "/" });
   
   // Image optimization shortcode
   eleventyConfig.addNunjucksAsyncShortcode("image", async function(src, alt, sizes) {

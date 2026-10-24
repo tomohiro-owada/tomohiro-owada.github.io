@@ -342,6 +342,13 @@ main h2.section-title {
     background: var(--border-color);
 }
 
+/* Defensive reset: cards must never render as a bulleted list */
+.post-cards {
+    list-style: none;
+    padding-left: 0;
+    margin: 0;
+}
+
 main ul.post-cards {
     list-style: none;
     padding: 0;

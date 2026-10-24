@@ -74,7 +74,7 @@ module.exports = function(eleventyConfig) {
   });
   
   // Get date helper
-  eleventyConfig.addFilter("getDate", (post) => post.date);
+  eleventyConfig.addFilter("getDate", (post) => (post ? post.date : new Date()));
   
   // Limit filter
   eleventyConfig.addFilter("limit", (array, n) => array.slice(0, n));

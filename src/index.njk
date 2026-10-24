@@ -1,55 +1,16 @@
 ---
 layout: base.njk
 title: Home
-bodyClass: home
+bodyClass: home wide
 description: Tomo's Diary - 技術や日常について綴るブログ。プログラミング、Web開発、その他の話題について書いています。
 ---
-{%- set categories = { "tech": "Tech", "philippines": "Philippines", "life": "Life" } -%}
 
-<nav class="category-nav" aria-label="カテゴリー">
-  <span class="category-nav__label">カテゴリー</span>
-  {%- for key, label in categories %}
-  <a href="/tags/{{ key }}/" class="category-pill category--{{ key }}">{{ label }}</a>
-  {%- endfor %}
-  <a href="/tags/" class="category-nav__all">すべてのタグ →</a>
-</nav>
+{% include "category-nav.njk" %}
 
 <h2 class="section-title">Recent Posts</h2>
 
-<ul class="post-cards">
-{%- for post in collections.posts | reverse %}
-  {%- set cat = "" -%}
-  {%- for t in post.data.tags -%}
-    {%- if not cat and categories[t] -%}{%- set cat = t -%}{%- endif -%}
-  {%- endfor -%}
-  {%- set thumb = post.data.image or post.data.ogImage or site.defaultImage -%}
-  <li class="post-card{% if loop.first %} post-card--featured{% endif %}">
-    <a class="post-card__thumb" href="{{ post.url }}" tabindex="-1" aria-hidden="true">
-      <img src="{{ thumb }}" alt="{{ post.data.imageAlt or post.data.title }}" width="1200" height="630" {% if loop.first %}loading="eager" fetchpriority="high"{% else %}loading="lazy"{% endif %} decoding="async">
-    </a>
-    <div class="post-card__body">
-      <div class="post-card__meta">
-        {%- if cat %}
-        <a href="/tags/{{ cat }}/" class="category-badge category--{{ cat }}">{{ categories[cat] }}</a>
-        {%- endif %}
-        <time datetime="{{ post.date | date('%Y-%m-%d') }}">{{ post.date | date("%Y年%m月%d日") }}</time>
-      </div>
-      <h3 class="post-card__title"><a href="{{ post.url }}">{{ post.data.title }}</a></h3>
-      {%- if post.data.description %}
-      <p class="post-card__desc">{{ post.data.description }}</p>
-      {%- endif %}
-      <div class="post-card__tags">
-        {%- set shown = 0 -%}
-        {%- for tag in post.data.tags -%}
-          {%- if tag !== "posts" and not categories[tag] and shown < 3 -%}
-            {%- set shown = shown + 1 %}
-        <a href="/tags/{{ tag | slug }}/" class="chip">#{{ tag }}</a>
-          {%- endif -%}
-        {%- endfor %}
-      </div>
-    </div>
-  </li>
-{%- endfor %}
-</ul>
+{%- set cardPosts = collections.posts | reverse %}
+{%- set featured = true %}
+{% include "post-cards.njk" %}
 
 <p class="all-tags-link"><a href="/tags/">すべてのタグを見る →</a></p>

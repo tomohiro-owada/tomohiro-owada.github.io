@@ -59,7 +59,7 @@
             <img class="site-brand__icon" src="/icon-192.png" alt="" width="44" height="44" decoding="async">
             <span class="site-brand__text">
                 <{{ siteNameTag }} class="site-brand__name">{{ site.title }}</{{ siteNameTag }}>
-                <span class="site-brand__tagline">{%- for part in site.tagline.split("、") -%}<span>{{ part }}{% if not loop.last %}、{% endif %}</span>{%- endfor -%}</span>
+                <span class="site-brand__tagline">{%- for part in site.tagline.split(" — ") -%}<span>{{ part }}{% if not loop.last %} —{% endif %}</span>{% if not loop.last %} {% endif %}{%- endfor -%}</span>
             </span>
         </a>
     </header>

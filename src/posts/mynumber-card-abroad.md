@@ -7,8 +7,7 @@ tags:
   - philippines
   - mynumber
   - overseas-life
-image: /images/mynumber-card-abroad-hero.png
-ogImage: https://abalol.xyz/images/mynumber-card-abroad-hero.png
+image: /images/posts/mynumber-card-abroad/hero.png
 imageAlt: "水色の背景に「海外在住者のマイナンバーカード受け取りで、公式の状況確認サイトがあてにならなかった話」というタイトルと、カード、封筒、飛行機のアイコン"
 ---
 

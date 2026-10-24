@@ -18,3 +18,7 @@ eleventyExcludeFromCollections: true
 {% for post in collections.posts | reverse %}{% if (post.data.tags | realTags)[0] == key %}
 - [{{ post.data.title | safe }}]({{ site.url }}{{ post.url }}): {{ post.data.description | safe }}（{{ post.date | date("%Y-%m-%d") }}）{% endif %}{% endfor %}
 {%- endfor %}
+
+## Slides（単独ページ）
+{% for sp in site.standalonePages %}
+- [{{ sp.title | safe }}]({{ site.url }}{{ sp.url }}): {{ sp.description | safe }}{% endfor %}

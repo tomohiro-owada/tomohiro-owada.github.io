@@ -129,40 +129,6 @@ footer {
     text-decoration: none;
 }
 
-.same-month-posts {
-    margin-top: 3rem;
-    padding: 1.5rem;
-    background-color: #f8f8f8;
-    border-radius: 8px;
-}
-
-main .same-month-posts h2 {
-    margin-top: 0;
-    line-height: 1.5;
-    font-size: 1.1rem;
-    margin-bottom: 1rem;
-    color: var(--primary-color);
-}
-
-.same-month-posts ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
-
-.same-month-posts li {
-    margin-bottom: 0.5rem;
-}
-
-.same-month-posts a {
-    color: var(--link-color);
-    text-decoration: none;
-}
-
-.same-month-posts a:hover {
-    text-decoration: underline;
-}
-
 article header {
     margin-bottom: 2rem;
 }
@@ -915,15 +881,6 @@ main .related-posts__list li {
 }
 
 /* ===== About page ===== */
-.draft-note {
-    margin-bottom: 1.5rem;
-    padding: 0.7rem 1rem;
-    border-left: 4px solid #f3c27f;
-    background: #fff8ec;
-    font-size: 0.85rem;
-    color: #7a4a00;
-}
-
 .about-profile {
     display: flex;
     align-items: center;

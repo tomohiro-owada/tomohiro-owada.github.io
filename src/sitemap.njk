@@ -26,4 +26,10 @@ eleventyExcludeFromCollections: true
   </url>
   {%- endif %}
   {%- endfor %}
+  {%- for sp in site.standalonePages %}
+  <url>
+    <loc>{{ site.url }}{{ sp.url }}</loc>
+    <lastmod>{{ sp.lastmod }}</lastmod>
+  </url>
+  {%- endfor %}
 </urlset>

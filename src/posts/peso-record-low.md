@@ -10,6 +10,7 @@ tags:
   - inflation
   - bsp
 image: /images/peso-record-low-hero.png
+ogImage: https://abalol.xyz/images/peso-record-low-hero.png
 imageAlt: "薄いグレーの背景に「フィリピン中央銀行が利上げした日に、ペソが過去最安値を更新した（10/22）」というタイトルと、右下がりの赤い折れ線"
 ---
 

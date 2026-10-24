@@ -1,6 +1,6 @@
 ---
 title: コードを1行も書かずに市場価格サイトを作ったら、AIはナスを卵と間違え、私は相関を読み違えかけた
-date: 2026-10-24
+date: 2026-10-24T17:54:00+08:00
 description: "フィリピン農業省（DA）の価格PDFから、メトロマニラの市場価格とUSD/PHPの相関を見られる「Presyo Bantay」を、コードを1行も書かずにAI（opencodeとMuse）に作らせました。Las Piñasの輸入米はUSD/PHPと1〜2週間遅れで r=+0.92 でした。"
 tags:
   - tech

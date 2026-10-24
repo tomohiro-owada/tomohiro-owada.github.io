@@ -1,6 +1,6 @@
 ---
 title: "AIのスキルは手順書か、プロの振る舞いか。Agent Skills寄贈で考えたこと"
-date: 2026-10-24
+date: 2026-10-24T20:05:00+08:00
 description: "AnthropicがAgent SkillsをLinux Foundation傘下のAAIFに寄贈しました。善意だけのわけはなく、スキルが資産とも限りません。ただ、スキルを手順書として読むか、プロの振る舞いとして読むかで答えは変わると考えています。"
 tags:
   - tech

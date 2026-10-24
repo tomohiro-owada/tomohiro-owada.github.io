@@ -25,7 +25,7 @@ module.exports = {
   },
   twitter: "@abalol",
   // Google Analytics 4 の測定ID（例: "G-XXXXXXXXXX"）。空なら gtag.js を出力しない
-  ga4Id: "",
+  ga4Id: "G-VL047YCMK8",
   // Google Search Console の HTML タグ確認用 content 値。空なら meta を出力しない
   gscVerification: "",
   // ヘッダーのサブタイトル

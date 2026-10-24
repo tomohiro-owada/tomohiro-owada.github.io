@@ -39,9 +39,15 @@
     <!-- RSS Feed -->
     <link rel="alternate" type="application/rss+xml" title="Tomo's Diary RSS Feed" href="/rss.xml">
     
+    <!-- Favicon / app icons -->
+    <link rel="icon" href="/favicon.ico" sizes="48x48">
+    <link rel="icon" href="/favicon-32x32.png" type="image/png" sizes="32x32">
+    <link rel="icon" href="/icon-192.png" type="image/png" sizes="192x192">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
     <link rel="stylesheet" href="/css/style.css">
 </head>
-<body>
+<body{% if bodyClass %} class="{{ bodyClass }}"{% endif %}>
     <header>
         <h1><a href="/">Tomo's Diary</a></h1>
     </header>

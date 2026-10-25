@@ -8,8 +8,8 @@ tags:
   - x-api
   - grok-bot
   - automation
-image: /images/posts/x-api-free-ai-news/hero.png
-imageAlt: "Navy background with the post title in Japanese and line drawings of a rising sun and a newspaper"
+image: /images/posts/x-api-free-ai-news/hero-en.png
+imageAlt: "Navy background with the headline \"An Automatic AI News Briefing Every Morning, Without the Paid X API\" and line drawings of a rising sun and a newspaper"
 lang: en
 ---
 It turns out you can get a morning AI news briefing built automatically every day without the paid X API (X's official way for programs to read its data). What I use is the free public-post reading built into the AI assistant Grok Bot, capped at 30 reads per minute and 1,000 per day. One morning briefing uses somewhere between a dozen or so and 25 reads, nowhere near the limit.

@@ -7,8 +7,8 @@ tags:
   - philippines
   - mynumber
   - overseas-life
-image: /images/posts/mynumber-card-abroad/hero.png
-imageAlt: "Light blue background with the post title in Japanese and icons of a card, an envelope and an airplane"
+image: /images/posts/mynumber-card-abroad/hero-en.png
+imageAlt: "Light blue background with the headline \"My Japanese ID card sat at the embassy for 2 months while the official tracker said 'Being Issued'\" and icons of a card, an envelope and an airplane"
 lang: en
 ---
 

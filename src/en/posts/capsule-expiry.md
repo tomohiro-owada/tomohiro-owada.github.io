@@ -9,8 +9,8 @@ tags:
   - shopping
   - nespresso
   - lazada
-image: /images/posts/capsule-expiry/hero.png
-imageAlt: "Beige background with the post title in Japanese and illustrations of a glass of iced coffee, a capsule and a calendar"
+image: /images/posts/capsule-expiry/hero-en.png
+imageAlt: "Beige background with the headline \"I Let AI Shop for Nespresso Pods. The Cheapest Flavor Expired in 3 Days\" and illustrations of a glass of iced coffee, capsules and a calendar"
 lang: en
 ---
 

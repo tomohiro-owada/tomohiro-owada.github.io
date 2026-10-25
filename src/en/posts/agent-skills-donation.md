@@ -6,8 +6,8 @@ tags:
   - tech
   - ai
   - agent-skills
-image: /images/posts/agent-skills-donation/hero.png
-imageAlt: "Cream background with the post title in Japanese and line drawings of a folder holding a checklist, a code editor and a hand holding chalk"
+image: /images/posts/agent-skills-donation/hero-en.png
+imageAlt: "Cream background with the headline \"Is an AI Skill a Manual, or a Pro's Judgment? On the Agent Skills Donation\" and line drawings of a folder holding a checklist, a code editor and a hand holding chalk"
 lang: en
 ---
 

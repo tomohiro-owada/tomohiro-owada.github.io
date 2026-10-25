@@ -6,8 +6,8 @@ tags:
   - tech
   - ai
   - engineering
-image: /images/posts/ai-engineer-joy/hero.png
-imageAlt: "Cream background with the post title in Japanese and line drawings of a blackboard with a wavy line and a question mark, a code editor and a hand holding chalk"
+image: /images/posts/ai-engineer-joy/hero-en.png
+imageAlt: "Cream background with the headline \"Let AI Replace Engineers. The Real Job Was Never the Code\" and line drawings of a blackboard with a wavy line and a question mark, a code editor and a hand holding chalk"
 lang: en
 ---
 

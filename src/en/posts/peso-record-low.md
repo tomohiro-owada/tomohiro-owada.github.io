@@ -9,8 +9,8 @@ tags:
   - peso
   - inflation
   - bsp
-image: /images/posts/peso-record-low/hero.png
-imageAlt: "Light gray background with the post title in Japanese and a red line chart trending down to the right"
+image: /images/posts/peso-record-low/hero-en.png
+imageAlt: "Light gray background with the headline \"The Central Bank Hiked, and the Peso Hit a Record Low (Oct 22)\" and a red line chart trending down to the right"
 lang: en
 ---
 

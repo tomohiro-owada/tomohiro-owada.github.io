@@ -7,8 +7,8 @@ tags:
   - philippines
   - presyo-bantay
   - ai-agents
-image: /images/posts/presyo-bantay/hero.png
-imageAlt: "Japanese title text with \"Presyo Bantay\", a question mark between an eggplant and an egg, and a line chart illustration"
+image: /images/posts/presyo-bantay/hero-en.png
+imageAlt: "Headline \"I Built a Price Site Without Writing Code. AI Mistook Eggplant for Eggs. I Nearly Misread a Correlation.\" with \"Presyo Bantay\", a question mark between an eggplant and an egg, and a line chart"
 lang: en
 ---
 

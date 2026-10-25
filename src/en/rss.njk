@@ -1,0 +1,34 @@
+---
+permalink: /en/rss.xml
+eleventyExcludeFromCollections: true
+---
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>{{ site.title }}</title>
+    <description>{{ i18n.en.description }}</description>
+    <link>{{ site.url }}/en/</link>
+    <atom:link href="{{ site.url }}/en/rss.xml" rel="self" type="application/rss+xml"/>
+    <lastBuildDate>{{ collections.postsEn | latestDate | rssDate }}</lastBuildDate>
+    <language>en</language>
+    <image>
+      <url>{{ site.url }}/icon-512.png</url>
+      <title>{{ site.title }}</title>
+      <link>{{ site.url }}/en/</link>
+    </image>
+    {%- for post in collections.postsEn | reverse | limit(20) %}
+    <item>
+      <title>{{ post.data.title }}</title>
+      <link>{{ site.url }}{{ post.url }}</link>
+      <guid isPermaLink="true">{{ site.url }}{{ post.url }}</guid>
+      <pubDate>{{ post.date | rssDate }}</pubDate>
+      <dc:creator>{{ site.person.name }}</dc:creator>
+      {%- for t in post.data.tags | realTags %}
+      <category>{{ t }}</category>
+      {%- endfor %}
+      <description>{{ post.data.description or (post.templateContent | striptags | truncate(200)) }}</description>
+      <content:encoded><![CDATA[{% if post.data.image %}<p><img src="{{ site.url }}{{ post.data.image }}" alt="{{ post.data.imageAlt or post.data.title }}" width="1200" height="630"></p>{% endif %}{{ post.templateContent | absoluteHtml(site.url) | cdata | safe }}]]></content:encoded>
+    </item>
+    {%- endfor %}
+  </channel>
+</rss>

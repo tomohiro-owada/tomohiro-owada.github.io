@@ -2,34 +2,50 @@
 permalink: /sitemap.xml
 eleventyExcludeFromCollections: true
 ---
+{%- macro alternates(path) -%}
+{%- set a = path | i18nAlternates(collections.all) -%}
+{%- if a %}
+    <xhtml:link rel="alternate" hreflang="ja" href="{{ site.url }}{{ a.ja }}"/>
+    <xhtml:link rel="alternate" hreflang="en" href="{{ site.url }}{{ a.en }}"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="{{ site.url }}{{ a.ja }}"/>
+{%- endif -%}
+{%- endmacro -%}
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  {%- for prefix in ["", "/en"] %}
+  {%- set L = "en" if prefix else "ja" %}
+  {%- set langPosts = collections.postsEn if prefix else collections.posts %}
+  {%- set langTags = collections.tagListEn if prefix else collections.tagList %}
   <url>
-    <loc>{{ site.url }}/</loc>
-    <lastmod>{{ collections.posts | latestDate | isoDate }}</lastmod>
+    <loc>{{ site.url }}{{ prefix }}/</loc>
+    <lastmod>{{ langPosts | latestDate | isoDate }}</lastmod>{{ alternates(prefix + "/") }}
   </url>
   <url>
-    <loc>{{ site.url }}/about/</loc>
-    <lastmod>{{ collections.posts | latestDate | isoDate }}</lastmod>
+    <loc>{{ site.url }}{{ prefix }}/about/</loc>
+    <lastmod>{{ langPosts | latestDate | isoDate }}</lastmod>{{ alternates(prefix + "/about/") }}
   </url>
-  {%- for post in collections.posts | reverse %}
+  {%- for post in langPosts | reverse %}
   <url>
     <loc>{{ site.url }}{{ post.url }}</loc>
-    <lastmod>{{ (post.data.updated or post.date) | isoDate }}</lastmod>
+    <lastmod>{{ (post.data.updated or post.date) | isoDate }}</lastmod>{{ alternates(post.url) }}
   </url>
   {%- endfor %}
-  {%- for t in collections.tagList %}
-  {%- if site.categories[t] or collections[t].length >= site.tagIndexMinPosts %}
+  {%- for t in langTags %}
+  {%- set tagPosts = collections[t] | langOnly(L) %}
+  {%- if site.categories[t] or tagPosts.length >= site.tagIndexMinPosts %}
   <url>
-    <loc>{{ site.url }}/tags/{{ t | slug }}/</loc>
-    <lastmod>{{ collections[t] | latestDate | isoDate }}</lastmod>
+    <loc>{{ site.url }}{{ prefix }}/tags/{{ t | slug }}/</loc>
+    <lastmod>{{ tagPosts | latestDate | isoDate }}</lastmod>{{ alternates(prefix + "/tags/" + (t | slug) + "/") }}
   </url>
   {%- endif %}
   {%- endfor %}
+  {%- if not prefix %}
   {%- for sp in site.standalonePages %}
   <url>
     <loc>{{ site.url }}{{ sp.url }}</loc>
     <lastmod>{{ sp.lastmod }}</lastmod>
   </url>
+  {%- endfor %}
+  {%- endif %}
   {%- endfor %}
 </urlset>

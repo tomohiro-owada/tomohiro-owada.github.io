@@ -1,0 +1,17 @@
+---
+layout: base.njk
+title: Home
+pageType: home
+bodyClass: home wide
+permalink: /en/
+---
+
+{% include "category-nav.njk" %}
+
+<h2 class="section-title">Recent Posts</h2>
+
+{%- set cardPosts = collections.postsEn | reverse %}
+{%- set featured = true %}
+{% include "post-cards.njk" %}
+
+<p class="all-tags-link"><a href="/en/tags/">See all tags →</a></p>

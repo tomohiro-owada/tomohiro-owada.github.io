@@ -2,6 +2,9 @@
 layout: base.njk
 ---
 
+{%- set L = "en" if lang == "en" else "ja" -%}
+{%- set ui = i18n[L] -%}
+{%- set dateFmt = "en" if L == "en" else "%Y年%m月%d日" -%}
 <article class="post">
   {%- set heroSrc = image or ogImage or site.defaultImage -%}
   <figure class="hero">
@@ -11,12 +14,12 @@ layout: base.njk
     <h1>{{ title }}</h1>
     <div class="post-meta">
       <span class="post-meta__dates">
-        <span>公開 <time datetime="{{ page.date | isoDate }}">{{ page.date | date("%Y年%m月%d日") }}</time></span>
+        <span>{{ ui.published }} <time datetime="{{ page.date | isoDate }}">{{ page.date | date(dateFmt) }}</time></span>
         {%- if updated and (updated | isoDate) != (page.date | isoDate) %}
-        <span>更新 <time datetime="{{ updated | isoDate }}">{{ updated | date("%Y年%m月%d日") }}</time></span>
+        <span>{{ ui.updated }} <time datetime="{{ updated | isoDate }}">{{ updated | date(dateFmt) }}</time></span>
         {%- endif %}
       </span>
-      <a class="post-meta__author" href="/about/" rel="author">
+      <a class="post-meta__author" href="{{ ui.prefix }}/about/" rel="author">
         <img src="/icon-192.png" alt="" width="22" height="22" loading="lazy" decoding="async">
         <span>{{ site.person.name }}</span>
       </a>
@@ -25,7 +28,7 @@ layout: base.njk
     <div class="tags">
       {%- for tag in tags -%}
         {%- if tag !== "posts" -%}
-          <a href="/tags/{{ tag | slug }}/" class="tag">{{ tag }}</a>
+          <a href="{{ ui.prefix }}/tags/{{ tag | slug }}/" class="tag">{{ tag }}</a>
         {%- endif -%}
       {%- endfor -%}
     </div>
@@ -39,25 +42,33 @@ layout: base.njk
   {%- set shareCompact = false %}
   {% include "share.njk" %}
 
-  <aside class="author-box" aria-label="この記事を書いた人">
+  <aside class="author-box" aria-label="{{ ui.authorBoxLabel }}">
+    {%- if L == "en" %}
+    <img src="/icon-192.png" alt="{{ site.person.name }}'s icon" width="56" height="56" loading="lazy" decoding="async">
+    <div>
+      <p class="author-box__name"><a href="/en/about/" rel="author">{{ site.person.name }}</a></p>
+      <p class="author-box__bio">{{ site.person.jobTitle }} based in Manila. I write about AI tech such as RAG, AI agents and MCP, and about life in the Philippines. <a href="https://x.com/{{ site.person.handle }}" rel="me noopener">X @{{ site.person.handle }}</a></p>
+    </div>
+    {%- else %}
     <img src="/icon-192.png" alt="{{ site.person.name }}のアイコン" width="56" height="56" loading="lazy" decoding="async">
     <div>
       <p class="author-box__name"><a href="/about/" rel="author">{{ site.person.name }}（{{ site.person.nameJa }}）</a></p>
       <p class="author-box__bio">マニラ在住の{{ site.person.jobTitleJa }}。{{ site.person.knowsAbout | join("・") }}などのAI技術と、フィリピンでの暮らしについて書いています。<a href="https://x.com/{{ site.person.handle }}" rel="me noopener">X @{{ site.person.handle }}</a></p>
     </div>
+    {%- endif %}
   </aside>
 
-  {%- set related = collections.posts | relatedPosts(page.url, tags, 3) %}
+  {%- set related = (collections.postsEn if L == "en" else collections.posts) | relatedPosts(page.url, tags, 3) %}
   {%- if related.length %}
   <section class="related-posts" aria-labelledby="related-heading">
-    <h2 id="related-heading">関連記事</h2>
+    <h2 id="related-heading">{{ ui.related }}</h2>
     <ul class="related-posts__list">
       {%- for rp in related %}
       <li class="related-card">
         <a href="{{ rp.url }}">
           <img src="{{ rp.data.image or site.defaultImage }}" alt="{{ rp.data.imageAlt or rp.data.title }}" width="1200" height="630" loading="lazy" decoding="async">
           <span class="related-card__title">{{ rp.data.title }}</span>
-          <time datetime="{{ rp.date | isoDate }}">{{ rp.date | date("%Y年%m月%d日") }}</time>
+          <time datetime="{{ rp.date | isoDate }}">{{ rp.date | date(dateFmt) }}</time>
         </a>
       </li>
       {%- endfor %}
@@ -86,7 +97,7 @@ layout: base.njk
         navigator.clipboard.writeText(b.getAttribute("data-url")).then(function () {
           track(b);
           b.classList.add("is-done");
-          status.textContent = "リンクをコピーしました";
+          status.textContent = {{ ui.linkCopied | dump | safe }};
           setTimeout(function () { b.classList.remove("is-done"); status.textContent = ""; }, 2000);
         });
       });

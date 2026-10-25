@@ -129,6 +129,10 @@ module.exports = function(eleventyConfig) {
       return d.toISOString().split('T')[0];
     } else if (format === "%Y年%m月%d日") {
       return `${d.getFullYear()}年${(d.getMonth() + 1).toString().padStart(2, '0')}月${d.getDate().toString().padStart(2, '0')}日`;
+    } else if (format === "en") {
+      // "October 24, 2026" (same local-time basis as the Japanese format)
+      const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+      return `${months[d.getMonth()]} ${d.getDate()}, ${d.getFullYear()}`;
     } else if (format === "%d日") {
       return `${d.getDate().toString().padStart(2, '0')}日`;
     }
@@ -169,14 +173,54 @@ module.exports = function(eleventyConfig) {
       .replace(/-+$/, '');
   });
   
-  // Create tag list collection
+  // ===== i18n (Japanese default at existing URLs, English under /en/) =====
+  const isEn = (item) => item.data && item.data.lang === "en";
+
+  // Keep only items of one language ("ja" = everything that is not English)
+  eleventyConfig.addFilter("langOnly", (items, lang) =>
+    (items || []).filter((item) => (lang === "en" ? isEn(item) : !isEn(item)))
+  );
+
+  // Counterpart URLs for a page: { ja, en } when both versions exist, else null.
+  // /en/<path> <-> /<path>; existence is checked against collections.all.
+  const urlSets = new WeakMap();
+  eleventyConfig.addFilter("i18nAlternates", (url, all) => {
+    if (!url || !all) return null;
+    let urls = urlSets.get(all);
+    if (!urls) {
+      urls = new Set(all.map((item) => item.url));
+      urlSets.set(all, urls);
+    }
+    const str = String(url);
+    const ja = str.startsWith("/en/") ? str.slice(3) : str;
+    const en = str.startsWith("/en/") ? str : "/en" + str;
+    return urls.has(ja) && urls.has(en) ? { ja, en } : null;
+  });
+
+  // English posts (src/en/posts/*.md); collections.posts stays Japanese-only
+  eleventyConfig.addCollection("postsEn", (collectionApi) =>
+    collectionApi.getFilteredByGlob("./src/en/posts/*.md")
+  );
+
+  // Create tag list collection (Japanese pages only)
   eleventyConfig.addCollection("tagList", function(collectionApi) {
     const tagSet = new Set();
-    collectionApi.getAll().forEach(item => {
+    collectionApi.getAll().filter(item => !isEn(item)).forEach(item => {
       (item.data.tags || []).forEach(tag => {
         if (tag !== "posts") {
           tagSet.add(tag);
         }
+      });
+    });
+    return [...tagSet].sort();
+  });
+
+  // Tags used by English posts (for /en/tags/<tag>/)
+  eleventyConfig.addCollection("tagListEn", function(collectionApi) {
+    const tagSet = new Set();
+    collectionApi.getFilteredByGlob("./src/en/posts/*.md").forEach(item => {
+      (item.data.tags || []).forEach(tag => {
+        if (tag !== "posts") tagSet.add(tag);
       });
     });
     return [...tagSet].sort();

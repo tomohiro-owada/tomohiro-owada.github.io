@@ -1,0 +1,39 @@
+---
+layout: base.njk
+title: About Tomohiro Owada
+pageType: about
+permalink: /en/about/
+description: "About Tomohiro Owada (@abalol), who writes Tomo's Diary: an AI engineer and business owner based in Manila, working on RAG, AI agents and MCP."
+eleventyExcludeFromCollections: false
+---
+<div class="about-profile">
+  <img src="/icon-192.png" alt="{{ site.person.name }} (@{{ site.person.handle }}) icon" width="88" height="88" decoding="async">
+  <div>
+    <h1>{{ site.person.name }}</h1>
+    <p>{{ site.person.jobTitle }} in Manila / @{{ site.person.handle }}</p>
+  </div>
+</div>
+
+<h2>Profile</h2>
+<ul>
+  <li>Name: {{ site.person.name }} ({{ site.person.nameJa }} in Japanese), handle @{{ site.person.handle }}</li>
+  <li>Work: AI engineer and business owner (<a href="{{ site.person.companyUrl }}" rel="noopener">{{ site.person.companyOfficialName }}</a>)</li>
+  <li>Based in: Manila, Philippines</li>
+  <li>Focus: RAG (retrieval-augmented generation), AI agents, MCP (Model Context Protocol)</li>
+</ul>
+
+<h2>About this blog</h2>
+<p>Tomo's Diary is where I write up what I try and dig into as an AI engineer living in Manila. The posts are originally written in Japanese; this section has English versions.</p>
+<ul>
+  <li><a href="/en/tags/tech/">Tech</a>: hands-on notes from actually using AI agents, RAG and developer tools</li>
+  <li><a href="/en/tags/philippines/">Philippines</a>: news on prices, the peso and the Philippine economy, read from the point of view of someone who lives here</li>
+  <li><a href="/en/tags/life/">Life</a>: everyday life in Manila, Japanese paperwork from abroad, shopping and more</li>
+</ul>
+
+<h2>Links</h2>
+<ul>
+  <li>X: <a href="https://x.com/{{ site.person.handle }}" rel="me noopener">@{{ site.person.handle }}</a></li>
+  <li>Company: <a href="{{ site.person.companyUrl }}" rel="noopener">{{ site.person.companyOfficialName }} (pay4words.com)</a></li>
+  <li>GitHub: <a href="https://github.com/tomohiro-owada" rel="me noopener">tomohiro-owada</a></li>
+  <li>RSS: <a href="/en/rss.xml">/en/rss.xml</a></li>
+</ul>

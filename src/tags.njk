@@ -9,6 +9,6 @@ description: Tomo's Diaryのタグ一覧。記事をカテゴリ別に整理し�
 <h1>すべてのタグ</h1>
 <ul>
 {%- for tag in collections.tagList -%}
-  <li><a href="/tags/{{ tag | slug }}/">{{ tag }}</a> ({{ collections[tag].length }})</li>
+  <li><a href="/tags/{{ tag | slug }}/">{{ tag }}</a> ({{ (collections[tag] | langOnly("ja")).length }})</li>
 {%- endfor -%}
 </ul>

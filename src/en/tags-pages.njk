@@ -1,0 +1,24 @@
+---
+pagination:
+  data: collections.tagListEn
+  size: 1
+  alias: tag
+  addAllPagesToCollections: true
+layout: base.njk
+bodyClass: tag-page wide
+pageType: tag
+renderData:
+  title: "Tag: {{ tag }}"
+permalink: /en/tags/{{ tag | slug }}/
+---
+
+{% include "category-nav.njk" %}
+
+{%- set cardPosts = collections[tag] | langOnly("en") | reverse %}
+<h1 class="tag-heading">Posts tagged <span class="tag-heading__name">#{{ tag }}</span><span class="tag-heading__count"> ({{ cardPosts.length }})</span></h1>
+
+{%- set featured = false %}
+{%- set cardHeading = "h2" %}
+{% include "post-cards.njk" %}
+
+<p class="all-tags-link"><a href="/en/tags/">See all tags →</a></p>

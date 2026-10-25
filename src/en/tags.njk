@@ -1,0 +1,15 @@
+---
+layout: base.njk
+title: All tags
+pageType: tags
+robots: "noindex, follow"
+permalink: /en/tags/
+description: All tags on Tomo's Diary in English. Browse posts by topic.
+---
+
+<h1>All tags</h1>
+<ul>
+{%- for tag in collections.tagListEn -%}
+  <li><a href="/en/tags/{{ tag | slug }}/">{{ tag }}</a> ({{ (collections[tag] | langOnly("en")).length }})</li>
+{%- endfor -%}
+</ul>

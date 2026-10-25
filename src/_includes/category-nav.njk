@@ -1,9 +1,10 @@
 {#- Category pill row (tech / philippines / life). On a tag page the current category is marked with aria-current. -#}
 {%- set categories = { "tech": "Tech", "philippines": "Philippines", "life": "Life" } -%}
-<nav class="category-nav" aria-label="カテゴリー">
-  <span class="category-nav__label">カテゴリー</span>
+{%- set navUi = i18n["en" if lang == "en" else "ja"] -%}
+<nav class="category-nav" aria-label="{{ navUi.categoryNav }}">
+  <span class="category-nav__label">{{ navUi.categoryNav }}</span>
   {%- for key, label in categories %}
-  <a href="/tags/{{ key }}/" class="category-pill category--{{ key }}"{% if tag and tag == key %} aria-current="page"{% endif %}>{{ label }}</a>
+  <a href="{{ navUi.prefix }}/tags/{{ key }}/" class="category-pill category--{{ key }}"{% if tag and tag == key %} aria-current="page"{% endif %}>{{ label }}</a>
   {%- endfor %}
-  <a href="/tags/" class="category-nav__all">すべてのタグ →</a>
+  <a href="{{ navUi.prefix }}/tags/" class="category-nav__all">{{ navUi.allTags }}</a>
 </nav>

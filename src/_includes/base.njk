@@ -1,5 +1,8 @@
+{%- set L = "en" if lang == "en" else "ja" -%}
+{%- set ui = i18n[L] -%}
+{%- set alt = page.url | i18nAlternates(collections.all) -%}
 <!DOCTYPE html>
-<html lang="{{ site.language }}">
+<html lang="{{ ui.htmlLang }}">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -18,10 +21,16 @@
     {%- endif %}
     {#- ---------- per-page meta (title / description / robots) ---------- #}
     {%- set isPost = (pageType == "post") %}
-    {%- set tagPosts = (collections[tag] | reverse) if (pageType == "tag") else [] %}
+    {%- set tagPosts = (collections[tag] | langOnly(L) | reverse) if (pageType == "tag") else [] %}
     {%- if pageType == "home" -%}
-      {%- set pageTitle = site.title + " | " + site.shortDescription -%}
-      {%- set pageDescription = site.description -%}
+      {%- set pageTitle = site.title + " | " + ui.shortDescription -%}
+      {%- set pageDescription = ui.description -%}
+    {%- elif pageType == "tag" and L == "en" -%}
+      {%- set catDesc = ui.categoryDescriptions[tag] -%}
+      {%- set pageTitle = "#" + tag + " posts (" + tagPosts.length + ") | " + site.title -%}
+      {%- set titles = [] -%}
+      {%- for tp in tagPosts | limit(3) -%}{%- set titles = (titles.push(tp.data.title), titles) -%}{%- endfor -%}
+      {%- set pageDescription = (catDesc + ". " if catDesc else "") + "Posts tagged \"" + tag + "\" on " + site.title + " (" + tagPosts.length + "): " + (titles | join(" / ")) -%}
     {%- elif pageType == "tag" -%}
       {%- set catInfo = site.categories[tag] -%}
       {%- set pageTitle = "#" + tag + " の記事一覧（" + tagPosts.length + "件） | " + site.title -%}
@@ -30,7 +39,7 @@
       {%- set pageDescription = (catInfo.description + "。" if catInfo else "") + site.title + "の「" + tag + "」タグの記事一覧（" + tagPosts.length + "件）：" + (titles | join(" / ")) -%}
     {%- else -%}
       {%- set pageTitle = (title or "Blog") + " | " + site.title -%}
-      {%- set pageDescription = description or site.description -%}
+      {%- set pageDescription = description or ui.description -%}
     {%- endif -%}
     {%- if pageType == "tag" and tagPosts.length < site.tagIndexMinPosts and not site.categories[tag] -%}
       {%- set robots = "noindex, follow" -%}
@@ -44,12 +53,20 @@
     <meta name="author" content="{{ site.person.name }}">
     <meta name="robots" content="{{ robots or 'index, follow, max-image-preview:large, max-snippet:-1' }}">
     <link rel="canonical" href="{{ pageUrl }}">
-    <link rel="author" href="/about/">
+    {%- if alt %}
+    <link rel="alternate" hreflang="ja" href="{{ alt.ja | absoluteUrl(site.url) }}">
+    <link rel="alternate" hreflang="en" href="{{ alt.en | absoluteUrl(site.url) }}">
+    <link rel="alternate" hreflang="x-default" href="{{ alt.ja | absoluteUrl(site.url) }}">
+    {%- endif %}
+    <link rel="author" href="{{ ui.prefix }}/about/">
 
     <!-- Open Graph -->
     <meta property="og:type" content="{{ 'article' if isPost else ('profile' if pageType == 'about' else 'website') }}">
     <meta property="og:site_name" content="{{ site.title }}">
-    <meta property="og:locale" content="{{ site.locale }}">
+    <meta property="og:locale" content="{{ ui.locale }}">
+    {%- if alt %}
+    <meta property="og:locale:alternate" content="{{ i18n.ja.locale if L == 'en' else i18n.en.locale }}">
+    {%- endif %}
     <meta property="og:url" content="{{ pageUrl }}">
     <meta property="og:title" content="{{ title if isPost else pageTitle }}">
     <meta property="og:description" content="{{ pageDescription }}">
@@ -62,7 +79,7 @@
     {%- if isPost %}
     <meta property="article:published_time" content="{{ page.date | isoDate }}">
     <meta property="article:modified_time" content="{{ (updated or page.date) | isoDate }}">
-    <meta property="article:author" content="{{ '/about/' | absoluteUrl(site.url) }}">
+    <meta property="article:author" content="{{ (ui.prefix + '/about/') | absoluteUrl(site.url) }}">
     {%- set postTags = tags | realTags %}
     <meta property="article:section" content="{{ postTags[0] }}">
     {%- for t in postTags %}
@@ -80,7 +97,7 @@
     <meta name="twitter:image:alt" content="{{ heroAlt }}">
 
     <!-- Feeds / AI-readable summaries -->
-    <link rel="alternate" type="application/rss+xml" title="{{ site.title }} RSS" href="/rss.xml">
+    <link rel="alternate" type="application/rss+xml" title="{{ site.title }} RSS{{ ' (English)' if L == 'en' }}" href="{{ ui.prefix }}/rss.xml">
     <link rel="alternate" type="text/plain" title="llms.txt" href="/llms.txt">
     <link rel="sitemap" type="application/xml" href="/sitemap.xml">
 
@@ -98,39 +115,48 @@
     <link rel="stylesheet" href="/css/style.css?v={{ assetVersion.css }}">
 
     {%- if pageType == "home" -%}
-      {%- set ldPosts = collections.posts | reverse -%}
+      {%- set ldPosts = (collections.postsEn if L == "en" else collections.posts) | reverse -%}
     {%- elif pageType == "tag" -%}
       {%- set ldPosts = tagPosts -%}
     {%- else -%}
       {%- set ldPosts = [] -%}
     {%- endif %}
     <script type="application/ld+json">
-{{ { type: pageType or "page", url: page.url, title: (title if (isPost or pageType == "about") else pageTitle), description: pageDescription, image: image, imageAlt: imageAlt, date: page.date, updated: updated, tags: tags, tag: tag, posts: ldPosts } | jsonLd | safe }}
+{{ { type: pageType or "page", url: page.url, title: (title if (isPost or pageType == "about") else pageTitle), description: pageDescription, image: image, imageAlt: imageAlt, date: page.date, updated: updated, tags: tags, tag: tag, posts: ldPosts, lang: L, translationOf: (alt.ja if (alt and L == "en") else undefined) } | jsonLd | safe }}
     </script>
 </head>
 <body{% if bodyClass %} class="{{ bodyClass }}"{% endif %}>
-    {%- set siteNameTag = "h1" if page.url == "/" else "div" %}
+    {%- set siteNameTag = "h1" if (page.url == "/" or page.url == "/en/") else "div" %}
     <header class="site-header">
-        <a class="site-brand" href="/">
+        <a class="site-brand" href="{{ ui.prefix }}/">
             <img class="site-brand__icon" src="/icon-192.png" alt="" width="44" height="44" decoding="async">
             <span class="site-brand__text">
                 <{{ siteNameTag }} class="site-brand__name">{{ site.title }}</{{ siteNameTag }}>
-                <span class="site-brand__tagline">{%- for part in site.tagline.split(" — ") -%}<span>{{ part }}{% if not loop.last %} —{% endif %}</span>{% if not loop.last %} {% endif %}{%- endfor -%}</span>
+                <span class="site-brand__tagline">{%- for part in ui.tagline.split(" — ") -%}<span>{{ part }}{% if not loop.last %} —{% endif %}</span>{% if not loop.last %} {% endif %}{%- endfor -%}</span>
             </span>
         </a>
+        {%- if alt %}
+        <nav class="lang-switch" aria-label="{{ ui.switchLabel }}">
+            {%- if L == "en" %}
+            <a href="{{ alt.ja }}" hreflang="ja" lang="ja" rel="alternate">日本語</a>
+            {%- else %}
+            <a href="{{ alt.en }}" hreflang="en" lang="en" rel="alternate">English</a>
+            {%- endif %}
+        </nav>
+        {%- endif %}
     </header>
     <main>
         {{ content | safe }}
     </main>
     <footer class="site-footer">
-        <nav class="footer-nav" aria-label="サイト">
-            <a href="/about/">About（著者について）</a>
-            <a href="/tags/">タグ一覧</a>
-            <a href="/rss.xml">RSS</a>
+        <nav class="footer-nav" aria-label="{{ ui.footerNav }}">
+            <a href="{{ ui.prefix }}/about/">{{ ui.footerAbout }}</a>
+            <a href="{{ ui.prefix }}/tags/">{{ ui.footerTags }}</a>
+            <a href="{{ ui.prefix }}/rss.xml">RSS</a>
             <a href="https://x.com/{{ site.person.handle }}" rel="me noopener">X</a>
             <a href="https://github.com/tomohiro-owada" rel="me noopener">GitHub</a>
         </nav>
-        <p>&copy; {{ page.date.getFullYear() if page.date else "2026" }} <a href="/about/">{{ site.person.name }}</a></p>
+        <p>&copy; {{ page.date.getFullYear() if page.date else "2026" }} <a href="{{ ui.prefix }}/about/">{{ site.person.name }}</a></p>
     </footer>
 </body>
 </html>

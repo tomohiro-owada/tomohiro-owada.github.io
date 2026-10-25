@@ -1069,3 +1069,41 @@ main .share__list li {
         gap: 0.35rem;
     }
 }
+
+/* ===== Language switcher (shown only when a counterpart page exists) ===== */
+.lang-switch {
+    position: absolute;
+    top: 50%;
+    right: 1rem;
+    transform: translateY(-50%);
+    font-size: 0.8rem;
+    line-height: 1;
+}
+
+.lang-switch a {
+    display: inline-block;
+    padding: 0.4rem 0.75rem;
+    border: 1px solid #d5dbe5;
+    border-radius: 999px;
+    background: #fff;
+    color: #1f4fa3;
+    font-weight: 600;
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+
+.lang-switch a:hover {
+    background: #f2f6fd;
+    border-color: #8fb3ee;
+    text-decoration: none;
+}
+
+@media (max-width: 760px) {
+    .lang-switch {
+        position: static;
+        transform: none;
+        margin-top: 0.6rem;
+        text-align: center;
+    }
+}

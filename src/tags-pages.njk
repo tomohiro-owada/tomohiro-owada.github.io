@@ -7,6 +7,8 @@ pagination:
     - all
     - posts
     - tagList
+    - postsEn
+    - tagListEn
   addAllPagesToCollections: true
 layout: base.njk
 bodyClass: tag-page wide
@@ -18,7 +20,7 @@ permalink: /tags/{{ tag | slug }}/
 
 {% include "category-nav.njk" %}
 
-{%- set cardPosts = collections[tag] | reverse %}
+{%- set cardPosts = collections[tag] | langOnly("ja") | reverse %}
 <h1 class="tag-heading"><span class="tag-heading__name">#{{ tag }}</span> の記事<span class="tag-heading__count">（{{ cardPosts.length }}件）</span></h1>
 
 {%- set featured = false %}

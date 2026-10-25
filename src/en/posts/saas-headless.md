@@ -18,13 +18,13 @@ A prediction that SaaS will vanish within 3 years is making the rounds on X. I t
 
 According to [X's news summary](https://x.com/i/trending/2114172476057952713), the entrepreneur Alex Becker says one-size-fits-all SaaS (software you use over the internet, usually for a monthly fee) is in decline, and that custom software built for each company will become the mainstream. He even warns that companies selling the same UI (user interface) to everyone will be gone within 3 years.
 
-My own experience points the same way. When I take on a new service these days, I rarely pick SaaS. Implementing it myself is faster.
+My own experience points the same way. When I sign up for a new service these days, I rarely go with SaaS. Implementing it myself is faster.
 
 ## For adding a feature, SaaS is faster
 
 Honestly, though, the bigger factor is the difference in values among engineers: how they see implementation and what it costs.
 
-To add a feature itself, adopting SaaS is overwhelmingly faster. But when you bring something inflexible into software whose specs change often, you end up depending on it. Then an ugly system, twisted to fit the SaaS, grows up around it.
+To add a feature itself, adopting SaaS is overwhelmingly faster. But when you bring something inflexible into software whose specs change often, you end up depending on it. Then an inelegant setup grows up around it, twisting things to fit the SaaS.
 
 ## The engineers who keep choosing SaaS
 

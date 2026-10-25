@@ -1,18 +1,18 @@
 ---
-title: "The AI Price War: I Split Three Companies' AI by Direction"
-date: 2026-10-25T08:55:00+08:00
-description: "List prices are flat at $2 per million tokens. With models no longer setting them apart, AI companies are locking customers in with conditional discounts and always-on agents. I don't pick one; I split my AI by direction: inside, making, and outside."
+title: "AI List Prices Are $2. I Pay $400 a Month."
+date: 2026-10-25T09:00:00+08:00
+description: "List prices are flat at $2 per million tokens. With models no longer setting them apart, AI companies are locking customers in with conditional discounts and always-on agents. This is about how I split my AI by direction to avoid being locked in, and what I pay every month."
 tags:
   - tech
   - ai
   - openai
   - anthropic
 image: /images/posts/ai-price-war-lock-in/hero-en.png
-imageAlt: "Cream background with the headline 'The AI Price War: I Split Three Companies' AI by Direction' and line drawings of a padlocked price tag, a code window and a hand holding chalk"
+imageAlt: "Cream background with the headline 'AI List Prices Are $2. I Pay $400 a Month.' and line drawings of a padlocked price tag, a code window and a hand holding chalk"
 lang: en
 ---
 
-In the AI price war, the gap between the models themselves has all but disappeared. So every company is trying to lock customers in with conditional discounts and always-on agents. I don't commit to any one of them. I split three companies' AI by the "direction" of the work.
+In the AI price war, the gap between the models themselves has all but disappeared. So every company is trying to lock customers in with conditional discounts and always-on agents. I thought I'd been careful not to get caught. Apparently, I'm not just a bystander.
 
 ## Rippling has been moving to OpenAI since May
 
@@ -44,16 +44,18 @@ The other is the ecosystem. OpenAI launched [Daybreak](https://openai.com/daybre
 
 ## I split them by direction
 
-Even so, I don't settle on one company. I divide the work by which way it faces.
+To avoid getting tied to one company, I divide my AI by which way the work faces.
 
 - Inside (actions from Slack and email): OpenAI's Dots
 - Making things (writing code, creating documents): Claude
 - Outside (actions on trends from X and the news): Grok Bot
 
-Once you've lived with any of these, it's hard to leave. But no single AI wins in every direction. A conditional discount like DataCamp's is a way of getting you to hand an entire direction over to one company.
+No single AI wins in every direction. A conditional discount like DataCamp's is a way of getting you to hand an entire direction over to one company.
 
-## Choose by cost, speed, and quality, per role
+## What choosing by cost, speed, and quality got me
 
-I've long said: choose your model by cost, speed, and quality. Agents are no different. Pick each one for its role on those three.
+I've long said: choose your model by cost, speed, and quality. Pick each agent for its role on those three, and I'd never be locked in. That was the plan.
 
-In fact, the topic of this post came from Grok Bot, which spotted The Information's story trending in X's news. The outside direction was Grok Bot's job again today.
+But once you've lived with an always-on agent, you can't leave. I split my AI to avoid being locked in by one company, and got locked in by all three.
+
+Claude's Max plan is $200 a month; Grok and OpenAI are $100 each. In the middle of a price war over $2 list prices, I'm paying three companies $400 a month (about ¥62,700, or ₱25,500).

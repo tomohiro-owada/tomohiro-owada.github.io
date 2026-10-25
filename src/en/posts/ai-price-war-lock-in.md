@@ -1,5 +1,5 @@
 ---
-title: "AI List Prices Are $2. I Pay $400 a Month."
+title: "Use Autonomous Agents Dots and Grok Bot for Different Jobs"
 date: 2026-10-25T09:00:00+08:00
 description: "List prices are flat at $2 per million tokens. With models no longer setting them apart, AI companies are locking customers in with conditional discounts and always-on agents. This is about how I split my AI by direction to avoid being locked in, and what I pay every month."
 tags:
@@ -8,7 +8,7 @@ tags:
   - openai
   - anthropic
 image: /images/posts/ai-price-war-lock-in/hero-en.png
-imageAlt: "Cream background with the headline 'AI List Prices Are $2. I Pay $400 a Month.' and line drawings of a padlocked price tag, a code window and a hand holding chalk"
+imageAlt: "Cream background with the headline 'Use Autonomous Agents Dots and Grok Bot for Different Jobs' and line drawings of a padlocked price tag, a code window and a hand holding chalk"
 lang: en
 ---
 

@@ -105,11 +105,44 @@ module.exports = function(eleventyConfig) {
       .map((x) => x.p);
   });
 
-  // Raw Markdown body of a post (front matter stripped) for llms-full.txt
-  eleventyConfig.addFilter("rawMarkdown", (inputPath) => {
-    const src = fs.readFileSync(inputPath, "utf8");
+  // Raw Markdown body of a post (front matter stripped) for llms-full.txt / *.md
+  const rawBody = (inputPath) => {
+    const src = fs.readFileSync(inputPath, "utf8").replace(/\r\n/g, "\n");
     return src.replace(/^---[\s\S]*?\n---\s*\n/, "").trim();
+  };
+  eleventyConfig.addFilter("rawMarkdown", rawBody);
+
+  // Raw Markdown body with relative links/images rewritten to absolute URLs
+  // (resolved against the post's own URL; fenced code blocks are left untouched)
+  const absolutize = (target, pageUrl, base) => {
+    const t = target.trim();
+    if (!t || t.startsWith("#") || t.startsWith("//") || /^[a-z][a-z0-9+.-]*:/i.test(t)) return target;
+    try { return new URL(t, base + pageUrl).href; } catch (e) { return target; }
+  };
+  eleventyConfig.addFilter("mdBody", (inputPath, pageUrl, base) => {
+    base = String(base).replace(/\/$/, "");
+    let fence = null;
+    return rawBody(inputPath).split("\n").map((line) => {
+      const m = line.match(/^\s*(`{3,}|~{3,})/);
+      if (fence) { if (m && m[1][0] === fence[0] && m[1].length >= fence.length) fence = null; return line; }
+      if (m) { fence = m[1]; return line; }
+      return line
+        // [text](url) and ![alt](url "title")
+        .replace(/(\]\()(\s*)([^)\s]+)/g, (all, a, sp, url) => a + sp + absolutize(url, pageUrl, base))
+        // reference definitions: [id]: url
+        .replace(/^(\s{0,3}\[[^\]]+\]:\s*)(\S+)/, (all, a, url) => a + absolutize(url, pageUrl, base))
+        // inline HTML href/src
+        .replace(/\b(href|src)=(["'])([^"']*)\2/g, (all, k, q, url) => `${k}=${q}${absolutize(url, pageUrl, base)}${q}`);
+    }).join("\n");
   });
+
+  // /posts/<slug>/ -> /posts/<slug>.md  (llmstxt.org convention)
+  eleventyConfig.addFilter("mdUrl", (url) => String(url).replace(/\/$/, "") + ".md");
+
+  // YYYY-MM-DD in the blog's timezone (Asia/Manila), independent of the build machine's TZ
+  eleventyConfig.addFilter("manilaDate", (d) =>
+    new Intl.DateTimeFormat("en-CA", { timeZone: "Asia/Manila", year: "numeric", month: "2-digit", day: "2-digit" }).format(new Date(d))
+  );
 
   // Make root-relative href/src absolute (for feeds)
   eleventyConfig.addFilter("absoluteHtml", (html, base) =>
@@ -201,6 +234,12 @@ module.exports = function(eleventyConfig) {
   eleventyConfig.addCollection("postsEn", (collectionApi) =>
     collectionApi.getFilteredByGlob("./src/en/posts/*.md")
   );
+
+  // All published posts (JA + EN) for the per-post Markdown outputs
+  eleventyConfig.addCollection("postsAll", (collectionApi) => [
+    ...collectionApi.getFilteredByGlob("./src/posts/*.md"),
+    ...collectionApi.getFilteredByGlob("./src/en/posts/*.md")
+  ]);
 
   // Create tag list collection (Japanese pages only)
   eleventyConfig.addCollection("tagList", function(collectionApi) {

@@ -1,0 +1,18 @@
+{%- set pl = "en" if post.data.lang == "en" else "ja" -%}
+# {{ post.data.title | safe }}
+
+> {{ post.data.description | safe }}
+
+- Published: {{ post.date | manilaDate }}
+{%- if post.data.updated %}
+- Updated: {{ post.data.updated | manilaDate }}
+{%- endif %}
+- URL: {{ site.url }}{{ post.url }}
+- Language: {{ pl }}
+- Tags: {{ post.data.tags | realTags | join(", ") }}
+- Author: {{ site.person.name }}
+- Site: {{ site.title | safe }} ({{ site.url }}/llms.txt)
+
+---
+
+{{ post.inputPath | mdBody(post.url, site.url) | safe }}

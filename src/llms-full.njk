@@ -2,22 +2,27 @@
 permalink: /llms-full.txt
 eleventyExcludeFromCollections: true
 ---
-# {{ site.title | safe }} — 全記事テキスト
+# {{ site.title | safe }} — all posts / 全記事テキスト
 
-> {{ site.description | safe }}
+> {{ i18n.en.shortDescription | safe }} / {{ site.shortDescription | safe }}
 
-著者: {{ site.person.name }}（{{ site.person.nameJa }}、@{{ site.person.handle }}）／ {{ site.person.jobTitle | safe }} in Manila ／ {{ site.url }}/about/
-{% for post in collections.posts | reverse %}
+Author: {{ site.person.name }}（{{ site.person.nameJa }}、@{{ site.person.handle }}）/ {{ site.person.jobTitle | safe }} in Manila / {{ site.url }}/about/
+{%- for group in [{ label: "日本語", list: collections.posts }, { label: "English", list: collections.postsEn }] %}
+
+# Posts ({{ group.label }})
+{% for post in group.list | reverse %}
 
 ---
 
 # {{ post.data.title | safe }}
 
 - URL: {{ site.url }}{{ post.url }}
-- 公開日: {{ post.date | date("%Y-%m-%d") }}{% if post.data.updated %}
-- 更新日: {{ post.data.updated | date("%Y-%m-%d") }}{% endif %}
-- タグ: {{ post.data.tags | realTags | join(", ") }}
-- 概要: {{ post.data.description | safe }}
+- Markdown: {{ site.url }}{{ post.url | mdUrl }}
+- Published: {{ post.date | manilaDate }}{% if post.data.updated %}
+- Updated: {{ post.data.updated | manilaDate }}{% endif %}
+- Tags: {{ post.data.tags | realTags | join(", ") }}
+- Summary: {{ post.data.description | safe }}
 
-{{ post.inputPath | rawMarkdown | safe }}
+{{ post.inputPath | mdBody(post.url, site.url) | safe }}
 {% endfor %}
+{%- endfor %}

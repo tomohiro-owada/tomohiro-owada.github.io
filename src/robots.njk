@@ -3,6 +3,8 @@ permalink: /robots.txt
 eleventyExcludeFromCollections: true
 ---
 # {{ site.title | safe }} — all crawlers welcome, including search and AI crawlers.
+# LLM-friendly index: {{ site.url }}/llms.txt (full text: {{ site.url }}/llms-full.txt)
+# Every post is also served as Markdown, e.g. {{ site.url }}/posts/<slug>.md and {{ site.url }}/en/posts/<slug>.md
 User-agent: *
 Allow: /
 

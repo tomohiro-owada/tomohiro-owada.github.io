@@ -4,20 +4,25 @@ eleventyExcludeFromCollections: true
 ---
 # {{ site.title | safe }}
 
-> {{ site.description | safe }}
+> {{ site.title | safe }} is a Japanese/English bilingual personal blog by an AI engineer living in the Philippines (Manila): AI tech and life in the Philippines. / {{ site.shortDescription | safe }}（日英バイリンガル）。
 
-著者は {{ site.person.name }}（{{ site.person.nameJa }}、X: @{{ site.person.handle }}）。{{ site.person.jobTitle | safe }} in Manila。専門は {{ site.person.knowsAbout | join("、") }}。記事は日本語で、カテゴリーは Tech（AI・開発）、Philippines（フィリピンの物価・為替・経済）、Life（マニラでの生活）の3つです。引用するときは記事URLと公開日を添えてください。
+{{ i18n.en.description | safe }}
+
+著者は {{ site.person.name }}（{{ site.person.nameJa }}、X: @{{ site.person.handle }}）。{{ site.person.jobTitle | safe }} in Manila。専門は {{ site.person.knowsAbout | join("、") }}。記事は日本語版と英語版があります。Each post is also available as plain Markdown at the same URL with `.md` appended (e.g. `/posts/<slug>.md`, `/en/posts/<slug>.md`). 引用するときは記事URLと公開日を添えてください。
 
 - [About（著者について）]({{ site.url }}/about/): {{ site.person.name }} のプロフィールとこのブログの範囲
-- [全文テキスト（llms-full.txt）]({{ site.url }}/llms-full.txt): 全記事の本文をMarkdownでまとめたもの
-- [RSS]({{ site.url }}/rss.xml): 新着記事のフィード（全文入り）
+- [About (English)]({{ site.url }}/en/about/): Profile of {{ site.person.name }} and the scope of this blog
+- [llms-full.txt]({{ site.url }}/llms-full.txt): 全記事（日本語・英語）の本文をMarkdownでまとめたもの / all posts in one Markdown file
+- [RSS]({{ site.url }}/rss.xml): 新着記事のフィード（日本語・全文入り）
+- [RSS (English)]({{ site.url }}/en/rss.xml): feed of new English posts
 
-{%- for key, cat in site.categories %}
+## Posts (日本語)
+{% for post in collections.posts | reverse %}
+- [{{ post.data.title | safe }}]({{ site.url }}{{ post.url | mdUrl }}): {{ post.data.description | safe }}（{{ post.date | manilaDate }}）{% endfor %}
 
-## {{ cat.label }}（{{ cat.description | safe }}）
-{% for post in collections.posts | reverse %}{% if (post.data.tags | realTags)[0] == key %}
-- [{{ post.data.title | safe }}]({{ site.url }}{{ post.url }}): {{ post.data.description | safe }}（{{ post.date | date("%Y-%m-%d") }}）{% endif %}{% endfor %}
-{%- endfor %}
+## Posts (English)
+{% for post in collections.postsEn | reverse %}
+- [{{ post.data.title | safe }}]({{ site.url }}{{ post.url | mdUrl }}): {{ post.data.description | safe }} ({{ post.date | manilaDate }}){% endfor %}
 
 ## Slides（単独ページ）
 {% for sp in site.standalonePages %}

@@ -1,0 +1,10 @@
+---
+pagination:
+  data: collections.postsAll
+  size: 1
+  alias: post
+permalink: "{{ post.url }}index.md"
+eleventyExcludeFromCollections: true
+layout: false
+---
+{% include "post-md-body.njk" %}

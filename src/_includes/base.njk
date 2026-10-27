@@ -99,6 +99,9 @@
     <!-- Feeds / AI-readable summaries -->
     <link rel="alternate" type="application/rss+xml" title="{{ site.title }} RSS{{ ' (English)' if L == 'en' }}" href="{{ ui.prefix }}/rss.xml">
     <link rel="alternate" type="text/plain" title="llms.txt" href="/llms.txt">
+    {%- if pageType == "post" %}
+    <link rel="alternate" type="text/markdown" title="Markdown version" href="{{ site.url }}{{ page.url | mdUrl }}">
+    {%- endif %}
     <link rel="sitemap" type="application/xml" href="/sitemap.xml">
 
     <!-- Favicon / app icons -->

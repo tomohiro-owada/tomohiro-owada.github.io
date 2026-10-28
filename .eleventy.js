@@ -5,6 +5,8 @@ module.exports = function(eleventyConfig) {
   eleventyConfig.addPassthroughCopy("CNAME");
   // favicon / app icons (X @abalol profile image) -> site root
   eleventyConfig.addPassthroughCopy({ "favicon": "/" });
+  // IndexNow ownership key file (indexnow/<key>.txt -> /<key>.txt); read by the deploy workflow
+  eleventyConfig.addPassthroughCopy({ "indexnow": "/" });
   
   // Image optimization shortcode
   eleventyConfig.addNunjucksAsyncShortcode("image", async function(src, alt, sizes) {

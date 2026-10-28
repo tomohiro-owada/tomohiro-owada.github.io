@@ -231,6 +231,11 @@
       page-break-after:always;margin:0 auto 20px;box-shadow:none;border:1px solid #ddd}
   }
 </style>
+<script type="application/ld+json">
+{%- for sp in site.standalonePages %}{% if sp.url == page.url %}
+{{ { type: "page", url: sp.url, title: sp.title, description: sp.description, updated: sp.lastmod, lang: "ja" } | jsonLd | safe }}
+{%- endif %}{% endfor %}
+</script>
 </head>
 <body>
 <div id="viewport">

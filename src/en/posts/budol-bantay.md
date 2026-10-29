@@ -87,3 +87,5 @@ The official poverty line is about ₱96 per person per day. The research group 
 ![Official poverty versus what people say. Official figures (PSA, 2025): 6.4% of families and 9.7% of individuals. Self-rated: families calling themselves poor, 55% in SWS (September 2026) and 39% in OCTA (July 2026); families rating their food as poor, 44% in SWS; families that went hungry, 22.6% in SWS. The official poverty line is about ₱96 per person per day](/images/posts/budol-bantay/poverty-official-vs-self-rated-en.png)
 
 I won't forgive scams that prey on the kind national character born of a culture of mutual support. But the poverty and inequality behind them are a fact, too.
+
+Small scams, where both the scammers and the scammed are poor. Will the day ever come when we break out of this sad situation?

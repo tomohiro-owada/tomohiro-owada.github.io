@@ -44,4 +44,6 @@ Even once a patch is out, it doesn't reach every server right away. I suspect CI
 
 So I think it's better to decide up front that you will be breached, and defend on that basis. And I want the defending side to have an AI guard too. It watches for suspicious activity, stops it first before waking anyone, and then tells a human. That's the guard's whole job. When a judgment call is needed, a human can step in.
 
-If an AI dug up the hole, an AI can stand guard in front of it too. Humans can sleep properly at night and make the call in the morning.
+If an AI dug up the hole, an AI can stand guard in front of it too.
+
+A management decision? While you're under attack? Do you really still need one?

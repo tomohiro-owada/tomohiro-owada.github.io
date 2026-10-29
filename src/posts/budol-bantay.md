@@ -79,4 +79,10 @@ AIはCloudflare Workers AI（Cloudflareが提供するAI実行サービス）の
 
 20件で100%を出したAIを載せても、結果の横には「人に相談を」と書きました。困ったら周りに聞きます。この一言は、フィリピンの支え合う文化と同じ向きだと私は思っています。
 
+PSA（フィリピン統計庁）は、2025年の貧困率を過去最低の9.7%（家族では6.4%）と発表しました（[GMA](https://www.gmanetwork.com/news/money/economy/999468/is-your-family-earning-below-p14-634-a-month-here-s-what-psa-says-about-poverty-line/story/)）。ところが世論調査機関SWSでは、2026年9月に55%の家族が自分を「mahirap（貧しい）」と答えています（[SWS](https://sws.org.ph/wp-content/uploads/2026/10/pr20261013-SWR-2026-III-Self-Rated-Poverty-and-Food-Poverty-media-release.pdf)）。
+
+公式の貧困ラインは、1人1日₱96ほどです。研究機関のIBONは「非現実的に低い」と批判しています（[IBON](https://www.ibon.org/en/official-poverty-figures-discount-millions-of-poor-filipinos/)）。
+
+![公式の貧困率と、人々が答える貧しさの比較。公式統計（PSA、2025年）は家族6.4%、個人9.7%。自己評価では、自分を貧しいと答えた家族がSWS（2026年9月）で55%、OCTA（2026年7月）で39%、食べ物が貧しいと答えた家族がSWSで44%、飢えを経験した家族がSWSで22.6%。公式の貧困ラインは1人1日₱96ほど](/images/posts/budol-bantay/poverty-official-vs-self-rated-ja.png)
+
 支え合う文化から生まれた優しい国民性に、つけ込む詐欺は許せません。ただ、その背景に貧困や格差があることも、また事実です。

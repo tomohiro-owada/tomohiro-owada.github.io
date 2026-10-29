@@ -80,4 +80,10 @@ The source code is on [GitHub](https://github.com/tomohiro-owada/budol-bantay) u
 
 Even with an AI that scored 100% on 20 messages, I wrote "talk to someone" next to the result. When in doubt, ask the people around you. I think that one line points the same way as the Philippines' culture of supporting each other.
 
+The PSA (Philippine Statistics Authority) put the 2025 poverty rate at a record-low 9.7% (6.4% for families) ([GMA](https://www.gmanetwork.com/news/money/economy/999468/is-your-family-earning-below-p14-634-a-month-here-s-what-psa-says-about-poverty-line/story/)). Yet in a September 2026 survey by the pollster SWS, 55% of families called themselves "mahirap" (poor) ([SWS](https://sws.org.ph/wp-content/uploads/2026/10/pr20261013-SWR-2026-III-Self-Rated-Poverty-and-Food-Poverty-media-release.pdf)).
+
+The official poverty line is about ₱96 per person per day. The research group IBON calls it "unrealistic" ([IBON](https://www.ibon.org/en/official-poverty-figures-discount-millions-of-poor-filipinos/)).
+
+![Official poverty versus what people say. Official figures (PSA, 2025): 6.4% of families and 9.7% of individuals. Self-rated: families calling themselves poor, 55% in SWS (September 2026) and 39% in OCTA (July 2026); families rating their food as poor, 44% in SWS; families that went hungry, 22.6% in SWS. The official poverty line is about ₱96 per person per day](/images/posts/budol-bantay/poverty-official-vs-self-rated-en.png)
+
 I won't forgive scams that prey on the kind national character born of a culture of mutual support. But the poverty and inequality behind them are a fact, too.

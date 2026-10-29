@@ -50,3 +50,20 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+
+  indexnow:
+    # Ping IndexNow (Bing, Yandex, Seznam, Naver, ...) after a successful deploy. Never blocks or fails the deploy.
+    runs-on: ubuntu-latest
+    needs: deploy
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    permissions:
+      contents: read
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Submit changed URLs to IndexNow
+        continue-on-error: true
+        run: bash .github/scripts/indexnow.sh "${{ github.event.before }}" "${{ github.sha }}"

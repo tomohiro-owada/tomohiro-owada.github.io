@@ -42,7 +42,7 @@ That makes me wonder. We can't tell how much damage can be done in a single minu
 
 Even once a patch is out, it doesn't reach every server right away. I suspect CISA spells out "if you can't update, take it offline" because some servers can't be updated quickly and stay behind.
 
-So I think it's better to decide up front that you will be breached, and defend on that basis. And I want the defending side to have an AI guard too. It watches for suspicious activity, stops it first before waking anyone, and then tells a human. That's the guard's whole job. When a judgment call is needed, a human can step in.
+So I think it's better to decide up front that you will be breached, and defend on that basis. And I want the defending side to have an AI guard too. It watches for suspicious activity, stops it first before waking anyone, and then tells a human. That's the guard's whole job.
 
 If an AI dug up the hole, an AI can stand guard in front of it too.
 

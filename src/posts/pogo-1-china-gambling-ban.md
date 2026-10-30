@@ -20,7 +20,7 @@ POGO（フィリピンのオフショア賭博事業者）は、中国で賭博�
 
 ## 隣町の国営カジノ街
 
-私が暮らすラスピニャスの隣、パラニャーケに「Entertainment City（エンターテインメント・シティ）」というカジノ街があります。マニラ湾沿いの100ヘクタールで、進出する会社には1社あたり10億ドル以上の投資が条件でした。[Solaire](https://www.rappler.com/business/21165-philippines-mega-casino-set-to-open-next-month/)は2013年3月、[City of Dreams Manila](https://www.melco-resorts-philippines.com/doc/press/2015/20150503-GOEWrapUpRelease.pdf)は2015年2月に開業しています。
+マニラ首都圏のパラニャーケに「Entertainment City（エンターテインメント・シティ）」というカジノ街があります。マニラ湾沿いの100ヘクタールで、進出する会社には1社あたり10億ドル以上の投資が条件でした。[Solaire](https://www.rappler.com/business/21165-philippines-mega-casino-set-to-open-next-month/)は2013年3月、[City of Dreams Manila](https://www.melco-resorts-philippines.com/doc/press/2015/20150503-GOEWrapUpRelease.pdf)は2015年2月に開業しています。
 
 管理するのはPAGCOR（フィリピン娯楽賭博公社）です。1977年にできた国営会社で、役目は賭博の規制、政府の財源づくり、観光振興の3つです（[会計検査院の報告](https://www.pagcor.ph/transparency/docs/2016-COA-AAR.pdf)）。規制する役と稼ぐ役を、同じ会社が持っています。
 

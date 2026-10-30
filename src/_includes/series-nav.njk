@@ -1,32 +1,33 @@
-{#- Expects: seriesPos = "top" | "bottom". Renders nothing unless the post sets `series`. -#}
+{#- Expects: seriesPos = "top" | "bottom". Renders nothing unless the post sets `series`. Japanese by default; English when the page has `lang: en`. -#}
 {%- set _series = seriesList[series] -%}
 {%- if _series -%}
-  {%- set _items = series | seriesItems(seriesPart, collections.posts) -%}
+  {%- set _en = (lang == "en") -%}
+  {%- set _items = series | seriesItems(seriesPart, (collections.postsEn if _en else collections.posts), lang) -%}
   {%- if seriesPos == "top" -%}
-<nav class="series-nav" aria-label="連載の目次">
-  <p class="series-nav__title">連載「{{ _series.title }}」全{{ _series.total }}回</p>
+<nav class="series-nav" aria-label="{{ 'Series contents' if _en else '連載の目次' }}">
+  <p class="series-nav__title">{% if _en %}{{ _series.titleEn }} ({{ _series.total }} parts){% else %}連載「{{ _series.title }}」全{{ _series.total }}回{% endif %}</p>
   <ol class="series-nav__list">
     {%- for i in _items %}
     <li{% if i.current %} class="is-current" aria-current="page"{% endif %}>
-      {%- if i.current %}<span>第{{ i.part }}回　{{ i.label }}</span>
-      {%- elif i.live %}<a href="{{ i.url }}">第{{ i.part }}回　{{ i.label }}</a>
-      {%- else %}<span class="series-nav__soon">第{{ i.part }}回　{{ i.label }}（公開準備中）</span>{% endif -%}
+      {%- if i.current %}<span>{{ 'Part ' + i.part + ': ' if _en else '第' + i.part + '回　' }}{{ i.label }}</span>
+      {%- elif i.live %}<a href="{{ i.url }}">{{ 'Part ' + i.part + ': ' if _en else '第' + i.part + '回　' }}{{ i.label }}</a>
+      {%- else %}<span class="series-nav__soon">{{ 'Part ' + i.part + ': ' if _en else '第' + i.part + '回　' }}{{ i.label }}{{ ' (coming soon)' if _en else '（公開準備中）' }}</span>{% endif -%}
     </li>
     {%- endfor %}
   </ol>
 </nav>
   {%- else -%}
-<nav class="series-nav series-nav--pager" aria-label="連載の前後の記事">
-  <p class="series-nav__title">連載「{{ _series.title }}」全{{ _series.total }}回</p>
+<nav class="series-nav series-nav--pager" aria-label="{{ 'Previous and next in the series' if _en else '連載の前後の記事' }}">
+  <p class="series-nav__title">{% if _en %}{{ _series.titleEn }} ({{ _series.total }} parts){% else %}連載「{{ _series.title }}」全{{ _series.total }}回{% endif %}</p>
   <div class="series-nav__pager">
     {%- for i in _items %}
       {%- if i.part == seriesPart - 1 and i.live %}
-    <a class="series-nav__prev" href="{{ i.url }}"><small>← 前の回</small><span>第{{ i.part }}回　{{ i.label }}</span></a>
+    <a class="series-nav__prev" href="{{ i.url }}"><small>{{ '← Previous' if _en else '← 前の回' }}</small><span>{{ 'Part ' + i.part + ': ' if _en else '第' + i.part + '回　' }}{{ i.label }}</span></a>
       {%- endif %}
     {%- endfor %}
     {%- for i in _items %}
       {%- if i.part == seriesPart + 1 and i.live %}
-    <a class="series-nav__next" href="{{ i.url }}"><small>次の回 →</small><span>第{{ i.part }}回　{{ i.label }}</span></a>
+    <a class="series-nav__next" href="{{ i.url }}"><small>{{ 'Next →' if _en else '次の回 →' }}</small><span>{{ 'Part ' + i.part + ': ' if _en else '第' + i.part + '回　' }}{{ i.label }}</span></a>
       {%- endif %}
     {%- endfor %}
   </div>

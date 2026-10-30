@@ -109,13 +109,15 @@ module.exports = function(eleventyConfig) {
 
   // Series navigation: parts of a series with a `live` flag (true when a published
   // post with that slug exists), see src/_data/seriesList.js and src/_includes/series-nav.njk
-  eleventyConfig.addFilter("seriesItems", (key, current, posts) => {
+  // `lang` = "en" switches to the English labels and /en/posts/ URLs (pass collections.postsEn as `posts`).
+  eleventyConfig.addFilter("seriesItems", (key, current, posts, lang) => {
     const s = require("./src/_data/seriesList.js")[key];
     if (!s) return [];
+    const en = lang === "en";
     const urls = new Set((posts || []).map((p) => p.url));
     return s.parts.map((p) => {
-      const url = "/posts/" + p.slug + "/";
-      return { part: p.part, label: p.label, url, live: urls.has(url), current: p.part === current };
+      const url = (en ? "/en/posts/" : "/posts/") + p.slug + "/";
+      return { part: p.part, label: en ? p.labelEn : p.label, url, live: urls.has(url), current: p.part === current };
     });
   });
 

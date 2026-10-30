@@ -107,6 +107,18 @@ module.exports = function(eleventyConfig) {
       .map((x) => x.p);
   });
 
+  // Series navigation: parts of a series with a `live` flag (true when a published
+  // post with that slug exists), see src/_data/seriesList.js and src/_includes/series-nav.njk
+  eleventyConfig.addFilter("seriesItems", (key, current, posts) => {
+    const s = require("./src/_data/seriesList.js")[key];
+    if (!s) return [];
+    const urls = new Set((posts || []).map((p) => p.url));
+    return s.parts.map((p) => {
+      const url = "/posts/" + p.slug + "/";
+      return { part: p.part, label: p.label, url, live: urls.has(url), current: p.part === current };
+    });
+  });
+
   // Raw Markdown body of a post (front matter stripped) for llms-full.txt / *.md
   const rawBody = (inputPath) => {
     const src = fs.readFileSync(inputPath, "utf8").replace(/\r\n/g, "\n");

@@ -1,0 +1,35 @@
+{#- Expects: seriesPos = "top" | "bottom". Renders nothing unless the post sets `series`. -#}
+{%- set _series = seriesList[series] -%}
+{%- if _series -%}
+  {%- set _items = series | seriesItems(seriesPart, collections.posts) -%}
+  {%- if seriesPos == "top" -%}
+<nav class="series-nav" aria-label="連載の目次">
+  <p class="series-nav__title">連載「{{ _series.title }}」全{{ _series.total }}回</p>
+  <ol class="series-nav__list">
+    {%- for i in _items %}
+    <li{% if i.current %} class="is-current" aria-current="page"{% endif %}>
+      {%- if i.current %}<span>第{{ i.part }}回　{{ i.label }}</span>
+      {%- elif i.live %}<a href="{{ i.url }}">第{{ i.part }}回　{{ i.label }}</a>
+      {%- else %}<span class="series-nav__soon">第{{ i.part }}回　{{ i.label }}（公開準備中）</span>{% endif -%}
+    </li>
+    {%- endfor %}
+  </ol>
+</nav>
+  {%- else -%}
+<nav class="series-nav series-nav--pager" aria-label="連載の前後の記事">
+  <p class="series-nav__title">連載「{{ _series.title }}」全{{ _series.total }}回</p>
+  <div class="series-nav__pager">
+    {%- for i in _items %}
+      {%- if i.part == seriesPart - 1 and i.live %}
+    <a class="series-nav__prev" href="{{ i.url }}"><small>← 前の回</small><span>第{{ i.part }}回　{{ i.label }}</span></a>
+      {%- endif %}
+    {%- endfor %}
+    {%- for i in _items %}
+      {%- if i.part == seriesPart + 1 and i.live %}
+    <a class="series-nav__next" href="{{ i.url }}"><small>次の回 →</small><span>第{{ i.part }}回　{{ i.label }}</span></a>
+      {%- endif %}
+    {%- endfor %}
+  </div>
+</nav>
+  {%- endif -%}
+{%- endif -%}

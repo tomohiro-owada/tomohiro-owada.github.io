@@ -37,7 +37,17 @@ layout: base.njk
     {% include "share.njk" %}
   </header>
 
+  {%- if series %}
+  {%- set seriesPos = "top" %}
+  {% include "series-nav.njk" %}
+  {%- endif %}
+
   {{ content | safe }}
+
+  {%- if series %}
+  {%- set seriesPos = "bottom" %}
+  {% include "series-nav.njk" %}
+  {%- endif %}
 
   {%- set shareCompact = false %}
   {% include "share.njk" %}

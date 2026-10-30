@@ -9,7 +9,7 @@ tags:
   - trafficking
   - crime
 image: /images/posts/pogo-3-scam-hubs-money/hero.png
-imageAlt: "タイトル「疑わしい取引は約347億円、救出は2,714人」の文字と、建物と札束を表す線画（ヒーロー画像は後で作成）"
+imageAlt: "クリーム色の背景に、小さな「POGOシリーズ 第3回」のラベルとタイトル「疑わしい取引は約347億円、救出は2,714人。POGOの名で動いた詐欺拠点の金は桁違いだった」。右側には、オフィスビル群と、円記号の帯がついた札束の山の線画"
 series: pogo
 seriesPart: 3
 ---

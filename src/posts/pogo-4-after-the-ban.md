@@ -9,7 +9,7 @@ tags:
   - japan
   - trafficking
 image: /images/posts/pogo-4-after-the-ban/hero.png
-imageAlt: "タイトル「帰れない外国人は9,000人超。POGO禁止後も残る人たちは、氷山の一角にすぎない」の文字と、住宅街と飛行機を表す線画（ヒーロー画像は後で作成）"
+imageAlt: "クリーム色の背景に、小さな「POGOシリーズ 第4回」のラベルとタイトル「帰れない外国人は9,000人超。POGO禁止後も残る人たちは、氷山の一角にすぎない」。右側には、水面の上に住宅街がのった氷山と、その上を飛ぶ飛行機の線画"
 series: pogo
 seriesPart: 4
 ---

@@ -9,7 +9,7 @@ tags:
   - tax
   - politics
 image: /images/posts/pogo-2-chinese-influx/hero.png
-imageAlt: "タイトル「ドゥテルテは怒り、そして「POGOはクリーンだ」と言った」の文字と、誘拐、賄賂、税金を表す線画（ヒーロー画像は後で作成）"
+imageAlt: "クリーム色の背景に、小さな「POGOシリーズ 第2回」のラベルとタイトル「ドゥテルテは怒り、そして「POGOはクリーンだ」と言った。中国人が増えた国で起きたこと」。右側には、手錠をかけられた手と南京錠（誘拐）、札束入りの封筒（賄賂）、納税の領収書と金貨（税金）の線画"
 series: pogo
 seriesPart: 2
 ---

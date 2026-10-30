@@ -9,7 +9,7 @@ tags:
   - china
   - politics
 image: /images/posts/pogo-1-china-gambling-ban/hero.png
-imageAlt: "タイトル「中国人向けに賭場を作った国。習近平政権は怒り、習近平本人は丁寧に頼んだ」の文字と、カジノと中国に関する線画（ヒーロー画像は後で作成）"
+imageAlt: "クリーム色の背景に、小さな「POGOシリーズ 第1回」のラベルとタイトル「中国人向けに賭場を作った国。習近平政権は怒り、習近平本人は丁寧に頼んだ」。右側には、ルーレット、カジノチップ、サイコロ、トランプ、赤い提灯と中国風の屋根の線画"
 series: pogo
 seriesPart: 1
 ---

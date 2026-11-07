@@ -1,5 +1,5 @@
 ---
-title: "The Numbers Trick Behind Cycling In and Out of Poverty"
+title: "The Philippine Numbers Trick Behind Repeating Poverty"
 date: 2026-11-07
 description: "Minimum wages are rising, yet 55% of families call themselves poor. Crossing the poverty line on annual income is not the same as living with security. I looked at the breakdown behind the numbers and the families who escape poverty only to return."
 tags:

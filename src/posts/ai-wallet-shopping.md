@@ -1,6 +1,7 @@
 ---
 title: "AIに財布を渡しても、買い物の楽しさは人からは奪えない"
 date: 2026-11-16T14:20:00+08:00
+updated: 2026-11-16T17:00:00+08:00
 description: "OpenAIのChatGPT Walletで、AIが支払いまでできるようになりました。私はいつもの消耗品の補充なら任せてもいいと思っています。ただ、店を見て回ることや誰から買うかも買い物のうちで、その楽しさまでは渡したくありません。"
 tags:
   - tech
@@ -8,6 +9,7 @@ tags:
   - ai
   - shopping
   - openai
+  - amazon
 image: /images/posts/ai-wallet-shopping/hero.png
 imageAlt: "クリーム色の紙に鉛筆で描いた線画。静かな商店街で、一人の人が店のショーウィンドウを見ている。その少し後ろのベンチの上に、財布が置かれている。文字はない"
 ---
@@ -20,6 +22,16 @@ imageAlt: "クリーム色の紙に鉛筆で描いた線画。静かな商店街
 同じ日に、Googleも[GeminiをGoogle Walletにつなぎました](https://blog.google/innovation-and-ai/products/gemini-app/google-wallet-gemini-app/)。こちらは支出のグラフを見せたり、予算の話をしたりするだけで、お金を動かすことはできません。片方は支払いまで渡し、片方は見るだけです。
 
 私の関心は支払いのほうにあります。金額や条件しだいなら、AIに払うところまで任せたいと思っています。
+
+## 買い物の入口の奪い合い
+
+OpenAIとGoogleだけではありません。ChatGPT Walletの発表と同じ13日に、ロイターがAmazonの内部文書をもとに、[World Product Graph](https://www.reuters.com/business/media-telecom/amazons-plan-own-worlds-product-data-fight-ai-shopping-agents-2026-11-13/)という計画を報じました（[GIGAZINE](https://gigazine.net/news/20261116-amazon-world-product-graph/)）。自社で売っていない商品も含めて、世界中のほぼすべての商品データを集める構想です。メーカーや小売からデータを受け取るほか、他の通販サイトからも独自に集める、と書かれています。
+
+狙いは買い物を調べ始める場所を自社に置くことです。モルガン・スタンレーの2025年の調査では、商品を調べ始めるときにGoogleを使う人は57%、Amazonを使う人は16%でした。Amazonは自社の買い物用AI「Alexa for Shopping」（以前の名前はRufus）の精度を上げるためにも、このデータを使おうとしています。同じ流れで、2026年9月にはMetaの買い物エージェント「Muse」からのアクセスを遮断し、2025年には、同様のアクセスを止めようとPerplexityを訴えています。入口を他社のAIに渡したくない、ということでしょう。
+
+内部文書には公開日を2027年10月1日とする記述もあるそうです。ただ、計画どおりに進むかは分かっていません。Amazonは構想段階の文書が今の計画を反映しているとは限らない、と答えています。
+
+ChatGPT Walletも、Geminiも、Amazonも、買い物が始まる場所を握りたいのだと思います。払うことだけでなく、何を、どこで、誰から買うかを調べる入口そのものが争いになっている。誰から買うかが大事な場面が残るなら、その入口が一つの会社に寄っていくことにも、目を向けておきたいです。
 
 ## 補充は任せる。選ぶのは自分で
 

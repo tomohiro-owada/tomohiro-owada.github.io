@@ -1,6 +1,7 @@
 ---
 title: "Hand AI Your Wallet, and the Joy of Shopping Still Can't Be Taken from People"
 date: 2026-11-16T14:20:00+08:00
+updated: 2026-11-16T17:00:00+08:00
 description: "OpenAI's ChatGPT Wallet now lets AI complete payments. I would leave restocking the usual consumables to it. But walking around shops, and who I buy from, are also part of shopping, and I don't want to hand over that enjoyment."
 tags:
   - tech
@@ -8,6 +9,7 @@ tags:
   - ai
   - shopping
   - openai
+  - amazon
 image: /images/posts/ai-wallet-shopping/hero.png
 imageAlt: "A pencil line drawing on cream paper: on a quiet shopping street, one person looks into a shop window. A wallet sits on a bench a little behind them. No text."
 lang: en
@@ -21,6 +23,16 @@ On November 13, OpenAI announced [ChatGPT Wallet](https://openai.com/index/intro
 On the same day, Google also [connected Gemini to Google Wallet](https://blog.google/innovation-and-ai/products/gemini-app/google-wallet-gemini-app/). That one only shows spending graphs and talks about budgets; it cannot move money. One side hands over payment; the other is view-only.
 
 My interest is in the payment side. Depending on the amount and the conditions, I would like to leave even the paying to AI.
+
+## The fight over where shopping starts
+
+It isn't only OpenAI and Google. On the 13th, the same day as the ChatGPT Wallet announcement, Reuters reported, based on internal documents, that Amazon is pursuing a plan called [World Product Graph](https://www.reuters.com/business/media-telecom/amazons-plan-own-worlds-product-data-fight-ai-shopping-agents-2026-11-13/) ([The Verge](https://www.theverge.com/tech/1033697/amazon-world-product-graph-ai-search)). It is a concept for gathering data on nearly every product in the world, including ones Amazon itself does not sell. The documents say the company would receive data from manufacturers and retailers, and also collect it independently from other retail sites.
+
+The aim is to make Amazon the place where people start looking up what to buy. In a 2025 Morgan Stanley survey, 57% of people began product research on Google, and 16% on Amazon. Amazon also wants to use this data to improve the accuracy of its own shopping AI, Alexa for Shopping (formerly called Rufus). In the same vein, in September 2026 it blocked access from Meta's shopping agent Muse, and in 2025 it sued Perplexity to stop similar access. It does not want to hand the entry point over to another company's AI.
+
+The internal documents also apparently include a launch date of October 1, 2027. Whether the plan will proceed as written, though, is not clear. Amazon has said that concept-stage documents may not reflect its current plans.
+
+I think ChatGPT Wallet, Gemini, and Amazon all want to own the place where shopping starts. It is not only paying that is being contested, but the entry point itself: looking up what to buy, where to buy it, and who you buy it from. If there will still be situations where who you buy from matters, I want to keep an eye on that entry point drifting toward a single company.
 
 ## Restocking I can leave to it. Choosing, I want to do myself
 

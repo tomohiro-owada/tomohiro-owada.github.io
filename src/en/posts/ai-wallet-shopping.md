@@ -1,7 +1,7 @@
 ---
 title: "Hand AI Your Wallet, and the Joy of Shopping Still Can't Be Taken from People"
 date: 2026-11-16T14:20:00+08:00
-updated: 2026-11-16T17:00:00+08:00
+updated: 2026-11-16T17:45:00+08:00
 description: "OpenAI's ChatGPT Wallet now lets AI complete payments. I would leave restocking the usual consumables to it. But walking around shops, and who I buy from, are also part of shopping, and I don't want to hand over that enjoyment."
 tags:
   - tech
@@ -10,6 +10,7 @@ tags:
   - shopping
   - openai
   - amazon
+  - shopify
 image: /images/posts/ai-wallet-shopping/hero.png
 imageAlt: "A pencil line drawing on cream paper: on a quiet shopping street, one person looks into a shop window. A wallet sits on a bench a little behind them. No text."
 lang: en
@@ -31,6 +32,16 @@ It isn't only OpenAI and Google. On the 13th, the same day as the ChatGPT Wallet
 The aim is to make Amazon the place where people start looking up what to buy. In a 2025 Morgan Stanley survey, 57% of people began product research on Google, and 16% on Amazon. Amazon also wants to use this data to improve the accuracy of its own shopping AI, Alexa for Shopping (formerly called Rufus). In the same vein, in September 2026 it blocked access from Meta's shopping agent Muse, and in 2025 it sued Perplexity to stop similar access. It does not want to hand the entry point over to another company's AI.
 
 The internal documents also apparently include a launch date of October 1, 2027. Whether the plan will proceed as written, though, is not clear. Amazon has said that concept-stage documents may not reflect its current plans.
+
+On the same 13th, there was a move in the opposite direction. Sierra, which builds AI agents for businesses, released version 1.0 of the [Personal Agent Protocol](https://sierra.ai/blog/releasing-poppy) (known as Poppy) ([gihyo.jp](https://gihyo.jp/article/2026/11/personal-agent-protocol), [Muse's announcement](https://muse.ai/blog/poppy-personal-agent-protocol)). It is an open standard for how a personal AI agent talks with a company's site, APIs, and the company's own agent. The idea was announced on October 6, together with Meta and others.
+
+A company publishes a file at a set location on its own domain ("/.well-known/poppy.json") that lists the ways an agent can connect. The user chooses how much access to give the agent, and can revoke it later. The scope of that permission is set with OAuth (a system for handing over access rights). Every Shopify store supports it automatically, with no extra implementation needed on the store's side.
+
+The shopping itself is handled by Shopify's Universal Commerce Protocol (UCP, a standard for product search, carts, and checkout). Poppy is combined with it as an extension that comes just before that, for the agent to identify itself at the store and learn what it is allowed to do. Meta's shopping agent Muse became the first personal agent to support this standard. More than 100 companies are collaborating on the specification, including Meta, OpenAI, Stripe, Visa, Walmart, and Salesforce.
+
+Amazon is blocking access from Muse and trying to hold the entry point with its own product data. Shopify, for its part, opened the door with a shared standard. Even in the same fight over where shopping starts, one side is closing the door and the other is opening it.
+
+The merchant guide OpenAI published for Wallet explains how to accept access to existing sites, but it does not mention Poppy. The way of opening the door does not seem to be settling on a single company, either.
 
 I think ChatGPT Wallet, Gemini, and Amazon all want to own the place where shopping starts. It is not only paying that is being contested, but the entry point itself: looking up what to buy, where to buy it, and who you buy it from. If there will still be situations where who you buy from matters, I want to keep an eye on that entry point drifting toward a single company.
 

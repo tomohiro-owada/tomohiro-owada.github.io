@@ -138,7 +138,7 @@ module.exports = function(eleventyConfig) {
   eleventyConfig.addFilter("mdBody", (inputPath, pageUrl, base) => {
     base = String(base).replace(/\/$/, "");
     let fence = null;
-    return rawBody(inputPath).split("\n").map((line) => {
+    let out = rawBody(inputPath).split("\n").map((line) => {
       const m = line.match(/^\s*(`{3,}|~{3,})/);
       if (fence) { if (m && m[1][0] === fence[0] && m[1].length >= fence.length) fence = null; return line; }
       if (m) { fence = m[1]; return line; }
@@ -150,6 +150,10 @@ module.exports = function(eleventyConfig) {
         // inline HTML href/src
         .replace(/\b(href|src)=(["'])([^"']*)\2/g, (all, k, q, url) => `${k}=${q}${absolutize(url, pageUrl, base)}${q}`);
     }).join("\n");
+    // HTML page shows .html-only blocks; .md output drops them and unwraps .md-only
+    out = out.replace(/<!-- html-only:start -->[\s\S]*?<!-- html-only:end -->\s*/g, "");
+    out = out.replace(/<div class="md-only">\s*([\s\S]*?)<\/div>\s*/g, "$1");
+    return out;
   });
 
   // /posts/<slug>/ -> /posts/<slug>.md  (llmstxt.org convention)

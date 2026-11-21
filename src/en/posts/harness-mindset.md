@@ -1,6 +1,7 @@
 ---
 title: "A Harness Is the Place Where You Define Basic Principles of Conduct"
 date: 2026-11-21T20:55:30+08:00
+updated: 2026-11-21T21:02:03+08:00
 description: "People's actions can be restricted by rules, but they cannot be bound by ideology. Even if you try to bind AI with rules, it sometimes strays, but if you hand it a way of thinking, you can have it act along those lines. I think that is because, even though it has a framework as humanity, it is made so as not to hold a particular ideology. I thought that might be what a harness is."
 tags:
   - tech
@@ -23,7 +24,7 @@ For example, rather than defining in a harness that you must not kill people, yo
 
 ## Write the finer rules in a skill
 
-In the harness, you write basic principles that apply as a whole. At a finer grain, you can define things more like a penal code or a civil code. Say you leave driving to an AI. If you were to define that, I think it would be something like Driving Agent Skills (the procedures you hand over when you leave the driving to it). That is where, for the first time, you would find things like "do not drive in a way that bothers other people," "always pay attention to the situation," and "if an accident happens, put human life first."
+In the harness, you write basic principles that apply as a whole. At a finer grain, you can define things more like a penal code or a civil code. Say you leave driving to an AI. If you were to define that, I think it would be something like Driving Agent Skills (the procedures you hand over when you leave the driving to it). There is a principle that the individual should be respected. That is why, for the first time in there, you would find things like "do not drive in a way that bothers other people," "always pay attention to the situation," and "if an accident happens, put human life first."
 
 What corresponds to a constitution is the harness, the place where you write principles that apply as a whole. What corresponds to a penal code is prompts and context engineering (instructions you hand over only for that situation), and I think things written in words are sometimes ignored. For things you absolutely want to make impossible, you stop them with mechanisms, the way a qualification does: guardrails, permissions, and a sandbox (an execution environment cut off from the outside). That, I think, is these three tiers.
 
